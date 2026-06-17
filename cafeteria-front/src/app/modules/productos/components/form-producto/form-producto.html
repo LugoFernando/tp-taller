@@ -1,0 +1,95 @@
+<form [formGroup]="form" (ngSubmit)="sendProducto()">
+
+    <div class="row">
+        <div class="col">
+            <label>Nombre</label>
+
+            <input
+                pInputText
+                type="text"
+                formControlName="nombre">
+
+            @if(form.get('nombre')?.invalid &&
+                form.get('nombre')?.touched){
+
+                <span class="text-danger">
+                    Nombre obligatorio
+                </span>
+
+            }
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col">
+            <label>Descripción</label>
+
+            <input
+                pInputText
+                type="text"
+                formControlName="descripcion">
+
+            @if(form.get('descripcion')?.invalid &&
+                form.get('descripcion')?.touched){
+
+                <span class="text-danger">
+                    Descripción obligatoria
+                </span>
+
+            }
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col">
+            <label>Clasificación</label>
+
+            <input
+                pInputText
+                type="text"
+                formControlName="clasificacion">
+
+            @if(form.get('clasificacion')?.invalid &&
+                form.get('clasificacion')?.touched){
+
+                <span class="text-danger">
+                    Clasificación obligatoria
+                </span>
+
+            }
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col">
+            <label>Precio</label>
+
+            <input
+                pInputText
+                type="number"
+                formControlName="precio">
+
+            @if(form.get('precio')?.invalid &&
+                form.get('precio')?.touched){
+
+                <span class="text-danger">
+                    Precio obligatorio
+                </span>
+
+            }
+        </div>
+    </div>
+
+    <div class="row mt-4 text-center">
+        <div class="col">
+
+            <p-button
+                type="submit"
+                [label]="title()"
+                [disabled]="form.invalid">
+            </p-button>
+
+        </div>
+    </div>
+
+</form>

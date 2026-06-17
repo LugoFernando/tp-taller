@@ -1,0 +1,43 @@
+<h2>Actualizar Producto</h2>
+
+<div class="card shadow p-4 mb-4">
+
+    <h4 class="mb-3">Producto actual</h4>
+
+    <div class="row">
+        <div class="col-md-6">
+            <p>
+                <strong>ID:</strong>
+                {{ producto?.id }}
+            </p>
+
+            <p>
+                <strong>Nombre:</strong>
+                {{ producto?.nombre }}
+            </p>
+        </div>
+
+        <div class="col-md-6">
+            <p>
+                <strong>Clasificación:</strong>
+                {{ producto?.clasificacion }}
+            </p>
+
+            <p>
+                <strong>Precio:</strong>
+                ${{ producto?.precio }}
+            </p>
+        </div>
+    </div>
+
+    <p>
+        <strong>Descripción:</strong><br>
+        {{ producto?.descripcion }}
+    </p>
+
+</div>
+
+<app-form-producto
+    [producto]="producto"
+    (eventEmitterFormProducto)="updateProducto($event)">
+</app-form-producto>

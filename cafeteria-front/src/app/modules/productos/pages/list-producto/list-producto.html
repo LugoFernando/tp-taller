@@ -1,0 +1,13 @@
+<p-toast />
+
+@if(spinner()){
+    <app-spinner></app-spinner>
+}
+@else {
+
+    <app-tabla-producto
+        (eventEmitterTableDeleteProducto)="listarProductos()"
+        [productos]="productos()">
+    </app-tabla-producto>
+
+}
