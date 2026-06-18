@@ -56,3 +56,8 @@ export type empresa = Prisma.empresaModel
  * 
  */
 export type producto = Prisma.productoModel
+/**
+ * Model usuario
+ * 
+ */
+export type usuario = Prisma.usuarioModel
