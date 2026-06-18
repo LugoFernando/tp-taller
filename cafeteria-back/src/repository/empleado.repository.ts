@@ -1,4 +1,4 @@
-import type { Empleado } from '../models/empleado.model.js'
+//import type { Empleado } from '../models/empleado.model.js'
 import { prisma } from '../prisma.js'
 
 export class EmpleadoRepository {
