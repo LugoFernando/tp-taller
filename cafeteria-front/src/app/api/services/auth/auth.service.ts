@@ -82,7 +82,14 @@ export class AuthService {
 
   obtenerNombre(): string {
     return this.cryptService.obtenerNombre() ?? '';
+  }
 
+  recoverPassword(email: string) {
+    return this.http.post(`${this.apiUrl}/auth/recover-password`, { email });
+  }
+
+  resetPassword(token: string, password: string, confirmPassword: string) {
+    return this.http.post(`${this.apiUrl}/auth/reset-password`, { token, password, confirmPassword });
   }
 }
 

@@ -24,6 +24,7 @@ export class UsuarioRepository {
     }) {
         return await prisma.usuario.create({ data });
     }
+    
     async updatePasswordById(id: number, password: string) {
         return await prisma.usuario.update({
             where: { id },

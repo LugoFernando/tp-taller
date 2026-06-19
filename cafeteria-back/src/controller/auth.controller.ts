@@ -62,6 +62,8 @@ export class AuthController {
         }
 
     }
+
+
     public EditarPerfil = async (req: Request, res: Response) => {
 
         const id = Number(req.params.id);
@@ -104,6 +106,7 @@ export class AuthController {
             });
         }
     }
+
 
     public recoverPassword = async (req: Request, res: Response) => {
         try {

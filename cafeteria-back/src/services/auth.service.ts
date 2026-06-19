@@ -72,6 +72,7 @@ export class AuthService {
         return user;
     }
 
+    
     async recoverPassword(email: string) {
         const user = await this.usuarioRepository.findUsuarioByEmail(email);
 
@@ -79,7 +80,7 @@ export class AuthService {
         const payload: any = { email };
 
         const token = jwt.sign(payload, config.jwtSecret, { expiresIn: '10m' });
-        const recoveryLink = `http://localhost:${config.port}/auth/reset-password?token=${token}`;
+        const recoveryLink = `http://localhost:4200/auth/restablecer-contrasena?token=${token}`;
 
         // Simula el envío del token al mail
         console.log(`Simulated recovery for ${email}: ${recoveryLink}`);

@@ -1,0 +1,36 @@
+<div class="login-wrapper">
+	<div class="login-card">
+		<p-card header="Restablecer contraseña">
+			<p-toast position="top-center" />
+			<form [formGroup]="form" (ngSubmit)="submit()">
+
+				<div class="field">
+					<label for="password">Nueva contraseña</label>
+					<p-password id="password" formControlName="password" [feedback]="false" [toggleMask]="true"
+						styleClass="w-full" inputStyleClass="w-full" />
+					@if (form.get('password')?.invalid && form.get('password')?.touched) {
+						<small class="error-msg">Minimo 8 caracteres, una mayuscula y un numero</small>
+					}
+				</div>
+
+				<div class="field">
+					<label for="confirmPassword">Confirmar contraseña</label>
+					<p-password id="confirmPassword" formControlName="confirmPassword" [feedback]="false" [toggleMask]="true"
+						styleClass="w-full" inputStyleClass="w-full" />
+					@if (form.get('confirmPassword')?.invalid && form.get('confirmPassword')?.touched) {
+						<small class="error-msg">Confirma la contraseña</small>
+					}
+				</div>
+
+				<div class="button-wrapper">
+					<p-button type="submit" label="Reestablecer contraseña" [loading]="loading" />
+				</div>
+
+				<div class="register-link">
+					¿Recordaste tu contraseña? <a routerLink="/auth/login">Inicia sesión</a>
+				</div>
+
+			</form>
+		</p-card>
+	</div>
+</div>
