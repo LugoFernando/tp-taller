@@ -1,122 +1,37 @@
-<div class="container-fluid overflow-hidden">
-  <div class="row vh-100 overflow-auto">
+<header class="navbar">
+  <div class="navbar-inner">
+    <a routerLink="/" class="logo">
+      <span class="logo-text">Cafeteria</span>
+    </a>
 
-    <!-- SIDEBAR -->
-    <div class="col-12 col-sm-3 col-xl-2 px-sm-2 px-0 bg-dark d-flex sticky-top">
-      <div
-        class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 pt-2 text-white">
+    <nav class="nav-center">
+      <p-button label="MENU" [text]="true" routerLink="/menu" routerLinkActive="active" styleClass="nav-link-btn" />
+      @if (auth.estaAutenticado()) {
+        <p-button label="PEDIDOS" [text]="true" routerLink="/pedidos" routerLinkActive="active" styleClass="nav-link-btn" />
+        <p-button icon="pi pi-shopping-cart" [text]="true" routerLink="/carrito" routerLinkActive="active" styleClass="nav-link-btn" ariaLabel="Carrito" />
+        @if (auth.esAdmin()) {
+          <p-button label="ADMIN" [text]="true" routerLink="/productos/list-productos" routerLinkActive="active" styleClass="nav-link-btn" />
+        }
+      }
+    </nav>
 
-        <a href="/" class="d-flex align-items-center pb-sm-3 mb-md-0 me-md-auto text-white text-decoration-none">
-          <span class="fs-5">
-            Crud <span class="d-none d-sm-inline">Productos</span>
-          </span>
-        </a>
-
-        <ul
-          class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start"
-          id="menu">
-
-          <li class="nav-item">
-            <a [routerLink]="['/']" class="nav-link px-sm-0 px-2">
-              <i class="fs-5 pi pi-home"></i>
-              <span class="ms-1 d-none d-sm-inline">Home</span>
-            </a>
-          </li>
-
-          <li class="dropdown">
-            <a href="#" class="nav-link dropdown-toggle px-sm-0 px-1" id="dropdown" data-bs-toggle="dropdown"
-              aria-expanded="false">
-
-              <i class="fs-5 pi pi-box"></i>
-              <span class="ms-1 d-none d-sm-inline">Productos</span>
-
-            </a>
-
-            <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdown">
-
-              <li>
-                <a class="dropdown-item" [routerLink]="['/productos/create-producto']">
-                  Crear Producto
-                </a>
-              </li>
-
-              <li>
-                <a class="dropdown-item" [routerLink]="['/productos/list-productos']">
-                  Listar Productos
-                </a>
-              </li>
-
-            </ul>
-          </li>
-
-        </ul>
-
-        <!-- <div class="dropdown py-sm-4 mt-sm-auto ms-auto ms-sm-0 flex-shrink-1">
-                    <a href="#"
-                        class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-                        id="dropdownUser1"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false">
-
-                        <span class="d-none d-sm-inline mx-1">Usuario</span>
-
-                    </a>
-
-                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow"
-                        aria-labelledby="dropdownUser1">
-
-                        <li>
-                            <a class="dropdown-item" href="#">
-                                Profile
-                            </a>
-                        </li>
-
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item" href="#">
-                                Sign out
-                            </a>
-                        </li>
-
-                    </ul>
-                </div> -->
-
-        <div class="dropdown py-sm-4 mt-sm-auto ms-auto ms-sm-0 flex-shrink-1">
-          <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-            id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fs-5 pi pi-user me-1"></i>
-            <span class="d-none d-sm-inline mx-1">{{ usuarioEmail }}</span>
-          </a>
-
-          <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-            <li>
-              <a class="dropdown-item" href="#" (click)="logout()">
-                <i class="pi pi-sign-out me-2"></i> Cerrar sesión
-              </a>
-            </li>
-          </ul>
+    <div class="nav-actions">
+      @if (auth.estaAutenticado()) {
+        <div class="user-info">
+          <img src="/images/usuario/default.png" alt="Usuario" class="user-avatar" />
+          <span class="user-greeting">Hola {{ auth.obtenerNombre() }}</span>
         </div>
-
-      </div>
+        <p-button
+          label="Salir"
+          [outlined]="true"
+          severity="secondary"
+          styleClass="btn-rounded btn-salir"
+          (onClick)="logout()"
+        />
+      } @else {
+        <p-button label="Ingresar" [text]="true" routerLink="/auth/login" />
+        <p-button label="Registrarse" routerLink="/auth/register" styleClass="btn-rounded btn-accent" />
+      }
     </div>
-
-    <!-- CONTENIDO -->
-    <div class="col d-flex flex-column h-sm-100">
-
-      <main class="row overflow-auto">
-        <div class="col pt-4">
-          <router-outlet></router-outlet>
-        </div>
-      </main>
-
-      <div class="row bg-light py-4 mt-auto">
-        <app-footer></app-footer>
-      </div>
-
-    </div>
-
   </div>
-</div>
+</header>

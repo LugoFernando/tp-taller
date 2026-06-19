@@ -31,10 +31,15 @@ export class AuthService {
   }
 
   signin(data: SigninData) {
-    return this.http.post<{ token: string; usuario: any }>(
+    return this.http.post<{ resultado: { token: string; nombre: string } }>(
       `${this.apiUrl}/auth/signin`, data
     ).pipe(
-      tap(res => this.cryptService.guardarToken(res.token))
+      tap(res => {
+        this.cryptService.guardarToken(res.resultado.token);
+        if (res.resultado.nombre) {
+          this.cryptService.guardarNombre(res.resultado.nombre);
+        }
+      })
     );
   }
 
@@ -47,6 +52,23 @@ export class AuthService {
   }
 
   perfilUsuario(id:number): Observable<Usuario>{
-    return this.http.get<Usuario>(`${environment.API_URL}/usuario/${id}`);
+
+  obtenerEmail(): string {
+    const token = this.cryptService.obtenerToken();
+    if (!token) return '';
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    return payload.email ?? '';
+  }
+
+  esAdmin(): boolean {
+    const token = this.cryptService.obtenerToken();
+    if (!token) return false;
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    return payload.rol === 'admin';
+  }
+
+  obtenerNombre(): string {
+
   }
 }
+

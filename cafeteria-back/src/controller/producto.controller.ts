@@ -12,12 +12,24 @@ export class ProductoController {
 
     public getProductos = async (req: Request, res: Response) => {
         try {
-            const productos = await productoService.obtenerProductos();
-
-            console.log(productos);
+            const nombre = req.query.nombre as string | undefined;
+            const clasificacion = req.query.clasificacion as string | undefined;
+            const productos = await productoService.obtenerProductos({ nombre, clasificacion });
 
             res.status(200).json(productos);
 
+        } catch (error) {
+            res.status(500).json({
+                message: "Error al obtener los productos",
+                error
+            });
+        }
+    }
+
+    public getProductosAdmin = async (_req: Request, res: Response) => {
+        try {
+            const productos = await productoService.obtenerProductosAdmin();
+            res.status(200).json(productos);
         } catch (error) {
             res.status(500).json({
                 message: "Error al obtener los productos",
@@ -33,20 +45,20 @@ export class ProductoController {
             const id: number = Number(req.params.id);
 
             if (isNaN(id)) {
-                return res.status(400).json("ID inválido");
+                return res.status(400).json("ID invalido");
             }
 
             const producto = await productoService.obtenerProducto(id);
 
-            if (!producto) {
+            return res.status(200).json(producto);
+
+        } catch (error: any) {
+
+            if (error.message === 'ProductoNoExiste') {
                 return res.status(404).json({
                     message: "Producto no encontrado"
                 });
             }
-
-            return res.status(200).json(producto);
-
-        } catch (error) {
 
             res.status(500).json({
                 message: "No se pudo encontrar el producto",
@@ -66,10 +78,10 @@ export class ProductoController {
 
             res.status(201).json(producto);
 
-        } catch (error) {
+        } catch (error: any) {
 
-            res.status(500).json({
-                message: "No se pudo crear el producto",
+            res.status(400).json({
+                message: error.message ?? "No se pudo crear el producto",
                 error
             });
 
@@ -80,33 +92,28 @@ export class ProductoController {
 
         const id = Number(req.params.id);
 
-        const {
-            nombre,
-            descripcion,
-            clasificacion,
-            precio
-        }: Producto = req.body;
-
         if (isNaN(id)) {
-            return res.status(400).json("ID inválido");
+            return res.status(400).json("ID invalido");
         }
 
         try {
 
             const productoActualizado =
-                await productoService.updateProducto(id, {
-                    nombre,
-                    descripcion,
-                    clasificacion,
-                    precio
-                });
+                await productoService.updateProducto(id, req.body);
 
             res.status(200).json(productoActualizado);
 
-        } catch (error) {
+        } catch (error: any) {
 
-            res.status(500).json({
-                message: "No se pudo actualizar el producto",
+            if (error.message === 'ProductoNoExiste') {
+                return res.status(404).json({
+                    message: 'Producto no encontrado',
+                    error
+                });
+            }
+
+            res.status(400).json({
+                message: error.message ?? "No se pudo actualizar el producto",
                 error
             });
 
@@ -118,7 +125,7 @@ export class ProductoController {
         const id = Number(req.params.id);
 
         if (isNaN(id)) {
-            return res.status(400).json("ID inválido");
+            return res.status(400).json("ID invalido");
         }
 
         try {

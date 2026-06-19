@@ -1,1 +1,19 @@
-<router-outlet></router-outlet>
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-image"></div>
+    <p class="hero-caption">Proximamente una foto</p>
+  </div>
+  <div class="hero-right">
+    <h1>Nuestro Menu</h1>
+    <p-button label="Ver Menu" routerLink="/menu" styleClass="btn-hero btn-rounded" />
+  </div>
+</section>
+
+<section class="promo">
+  <div class="promo-text">
+    <h2>Unite</h2>
+    <p>Registrate para hacer tus pedidos</p>
+    <p-button label="Crear cuenta" [outlined]="true" routerLink="/auth/register" styleClass="btn-rounded btn-accent" />
+  </div>
+
+</section>

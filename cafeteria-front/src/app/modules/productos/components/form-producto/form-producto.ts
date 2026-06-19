@@ -50,6 +50,12 @@ export class FormProducto implements OnInit {
       precio: [
         this.producto()?.precio ?? '',
         Validators.required
+      ],
+      imagen: [
+        this.producto()?.imagen ?? ''
+      ],
+      activo: [
+        this.producto()?.activo ?? true
       ]
     });
 
@@ -62,7 +68,9 @@ export class FormProducto implements OnInit {
       nombre: this.form.value.nombre,
       descripcion: this.form.value.descripcion,
       clasificacion: this.form.value.clasificacion,
-      precio: Number(this.form.value.precio)
+      precio: Number(this.form.value.precio),
+      imagen: this.form.value.imagen || null,
+      activo: this.form.value.activo ?? true
     };
 
     this.eventEmitterFormProducto.emit(producto);

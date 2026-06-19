@@ -1,0 +1,21 @@
+.admin-page {
+  padding: 0 1rem 2rem;
+}
+
+.admin-header {
+  background: var(--cafe-medio, #6b4c35);
+  color: var(--crema, #f5ebe0);
+}
+
+.price-admin {
+  color: var(--cafe-oscuro, #3d2b1f);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .admin-page .row.mb-3 {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+}

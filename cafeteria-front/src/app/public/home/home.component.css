@@ -1,0 +1,134 @@
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 420px;
+}
+
+.hero-left {
+  position: relative;
+}
+
+.hero-image {
+  height: 100%;
+  min-height: 420px;
+  background: linear-gradient(135deg, #c4a67a 0%, #8b6914 50%, #3d2b1f 100%);
+}
+
+.hero-caption {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.hero-right {
+  background: var(--cafe-oscuro, #3d2b1f);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  gap: 1.5rem;
+}
+
+.hero-right h1 {
+  color: var(--crema, #f5ebe0);
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+:host ::ng-deep .tag-nuevo.p-tag {
+  background: var(--acento, #c9a227) !important;
+  color: var(--cafe-oscuro, #3d2b1f) !important;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.4rem 1.5rem;
+}
+
+:host ::ng-deep .btn-hero.p-button {
+  background: var(--crema, #f5ebe0);
+  color: var(--cafe-oscuro, #3d2b1f);
+  border: none;
+  font-weight: 700;
+}
+
+:host ::ng-deep .btn-hero.p-button:hover {
+  background: var(--crema-oscuro, #e8ddd0);
+}
+
+:host ::ng-deep .btn-accent.p-button {
+  background: var(--cafe-medio, #6b4c35);
+  border-color: var(--cafe-medio, #6b4c35);
+  color: var(--crema, #f5ebe0);
+}
+
+.promo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--crema-oscuro, #e8ddd0);
+  min-height: 300px;
+}
+
+.promo-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem;
+  gap: 0.75rem;
+}
+
+.promo-text h2 {
+  color: var(--cafe-oscuro, #3d2b1f);
+  font-size: 2rem;
+}
+
+.promo-text p {
+  color: #333;
+  margin-bottom: 0.75rem;
+}
+
+.promo-img {
+  background: linear-gradient(135deg, var(--crema-oscuro, #e8ddd0), var(--cafe-claro, #a67c52));
+  position: relative;
+}
+
+.promo-img::after {
+  content: '\2615';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 5rem;
+}
+
+@media (max-width: 768px) {
+  .hero,
+  .promo {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-right h1 {
+    font-size: 2rem;
+  }
+
+  .promo-text {
+    padding: 2rem 1.5rem;
+  }
+
+  .promo-text h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-image {
+    min-height: 280px;
+  }
+
+  .hero-right h1 {
+    font-size: 1.6rem;
+  }
+}

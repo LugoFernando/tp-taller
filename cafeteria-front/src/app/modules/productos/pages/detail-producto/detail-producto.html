@@ -1,8 +1,8 @@
-<div class="container">
+<div class="container admin-page">
 
     <div class="card shadow mt-4">
 
-        <div class="card-header bg-primary text-white">
+        <div class="card-header admin-header">
             <h3 class="mb-0">
                 Detalle del Producto
             </h3>
@@ -11,62 +11,34 @@
         <div class="card-body">
 
             <div class="row mb-3">
-                <div class="col-md-3 fw-bold">
-                    ID:
-                </div>
-                <div class="col-md-9">
-                    {{ producto?.id }}
-                </div>
+                <div class="col-md-3 fw-bold">ID:</div>
+                <div class="col-md-9">{{ producto?.id }}</div>
             </div>
 
             <div class="row mb-3">
-                <div class="col-md-3 fw-bold">
-                    Nombre:
-                </div>
-                <div class="col-md-9">
-                    {{ producto?.nombre }}
-                </div>
+                <div class="col-md-3 fw-bold">Nombre:</div>
+                <div class="col-md-9">{{ producto?.nombre }}</div>
             </div>
 
             <div class="row mb-3">
-                <div class="col-md-3 fw-bold">
-                    Descripción:
-                </div>
-                <div class="col-md-9">
-                    {{ producto?.descripcion }}
-                </div>
+                <div class="col-md-3 fw-bold">Descripcion:</div>
+                <div class="col-md-9">{{ producto?.descripcion }}</div>
             </div>
 
             <div class="row mb-3">
-                <div class="col-md-3 fw-bold">
-                    Clasificación:
-                </div>
-                <div class="col-md-9">
-                    {{ producto?.clasificacion }}
-                </div>
+                <div class="col-md-3 fw-bold">Clasificacion:</div>
+                <div class="col-md-9">{{ producto?.clasificacion }}</div>
             </div>
 
             <div class="row mb-3">
-                <div class="col-md-3 fw-bold">
-                    Precio:
-                </div>
-                <div class="col-md-9 text-success fs-4">
-                    $ {{ producto?.precio }}
-                </div>
+                <div class="col-md-3 fw-bold">Precio:</div>
+                <div class="col-md-9 price-admin">${{ producto?.precio }}</div>
             </div>
 
         </div>
 
         <div class="card-footer text-end">
-
-            <button
-                class="btn btn-secondary"
-                routerLink="/productos/list-productos">
-
-                Volver
-
-            </button>
-
+            <button class="btn btn-secondary" routerLink="/productos/list-productos">Volver</button>
         </div>
 
     </div>
