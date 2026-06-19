@@ -3,7 +3,7 @@ import type { Usuario } from '../models/usuario.model.js';
 import { UsuarioRepository } from '../repository/usuario.repository.js';
 import jwt from 'jsonwebtoken';
 import { config } from '../config/config.js';
-//import { usuario } from '../prisma/client';
+// import { usuario } from '../prisma/client';
 
 
 export class AuthService {
@@ -18,7 +18,7 @@ export class AuthService {
 
     async registrarse(data: Usuario) {
 
-        if (!this.validarPassword) { throw new Error('PASSWORD_INVALIDO'); }
+        if (!this.validarPassword(data.password)) { throw new Error('PASSWORD_INVALIDO'); }
 
         const existe = await this.usuarioRepository.findUsuarioByEmail(data.email);
         if (existe) { throw new Error('EMAIL_EN_USO'); }
@@ -30,6 +30,7 @@ export class AuthService {
         return usuario;
 
     }
+
 
     async login(email: string, password: string) {
 
@@ -52,6 +53,60 @@ export class AuthService {
     }
 
 
+    async recoverPassword(email: string) {
+        const user = await this.usuarioRepository.findUsuarioByEmail(email);
+
+        // Genera un token aunque el email no exista
+        const payload: any = { email };
+
+        const token = jwt.sign(payload, config.jwtSecret, { expiresIn: '10m' });
+        const recoveryLink = `http://localhost:${config.port}/auth/reset-password?token=${token}`;
+
+        // Simula el envío del token al mail
+        console.log(`Simulated recovery for ${email}: ${recoveryLink}`);
+
+        return { token, recoveryLink };
+    }
 
 
+    async resetPassword(token: string, newPassword: string, confirmPassword: string) {
+    try {
+        const payload: any = jwt.verify(token, config.jwtSecret) as any;
+
+        if (!payload || !payload.email) {
+            throw new Error('TOKEN_INVALIDO');
+        }
+
+        if (!this.validarPassword(newPassword)) {
+            throw new Error('PASSWORD_INVALIDO');
+        }
+
+        if (newPassword !== confirmPassword) {
+            throw new Error('PASSWORDS_NO_COINCIDEN');
+        }
+
+        let user = null;
+        if (payload.id) {
+            user = await this.usuarioRepository.findUsuarioById(payload.id);
+        }
+        if (!user) {
+            user = await this.usuarioRepository.findUsuarioByEmail(payload.email);
+        }
+
+        if (!user) {
+            // Si el token es válido pero no hay usuario asociado, fallamos como token inválido.
+            throw new Error('TOKEN_INVALIDO');
+        }
+
+        await this.usuarioRepository.updatePasswordById(user.id, newPassword);
+
+        // Invalida token por uso o tiempo 
+        return { message: 'OK' };
+    } catch (err: any) {
+        if (err.name === 'TokenExpiredError' || err.name === 'JsonWebTokenError') {
+            throw new Error('TOKEN_INVALIDO');
+        }
+        throw err;
+    }
+}
 }
