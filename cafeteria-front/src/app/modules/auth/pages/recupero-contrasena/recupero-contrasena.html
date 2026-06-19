@@ -1,0 +1,26 @@
+<div class="login-wrapper">
+  <div class="login-card">
+    <p-card header="Solicitar recuperación">
+      <p-toast position="top-center" />
+      <form [formGroup]="form" (ngSubmit)="submit()">
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input pInputText id="email" formControlName="email" type="email" placeholder="tu@email.com" />
+          @if (form.get('email')?.invalid && form.get('email')?.touched) {
+            <small class="error-msg">Ingresa un email válido</small>
+          }
+        </div>
+
+        <div class="button-wrapper">
+          <p-button type="submit" label="Solicitar enlace" [loading]="loading" />
+        </div>
+
+        <div class="register-link">
+          ¿Recordaste tu contraseña? <a routerLink="/auth/login">Inicia sesión</a>
+        </div>
+
+      </form>
+    </p-card>
+  </div>
+</div>

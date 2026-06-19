@@ -20,5 +20,15 @@ export const authRoutes: Routes = [
     path:'editar-perfil',
     loadComponent: () => 
       import('./pages/editar-perfil/editar-perfil').then(c=>c.EditarPerfil)
+  },
+  {
+    path: 'recupero-contrasena',
+    loadComponent: () =>
+      import('./pages/recupero-contrasena/recupero-contrasena').then(c => c.RecuperoContrasenaComponent)
+  },
+  {
+    path: 'restablecer-contrasena',
+    loadComponent: () =>
+      import('./pages/restablecer-contrasena/restablecer-contrasena').then(c => c.RestablecerContrasenaComponent)
   }
 ];
