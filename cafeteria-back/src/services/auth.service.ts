@@ -51,7 +51,20 @@ export class AuthService {
 
     }
 
+    async editarPerfil(id:number,data:{email:string,nombre:string,apellido:string,direccion:string}){
+        
+        const usuario = await this.usuarioRepository.findUsuarioById(id);
 
+        if(!usuario){
+            throw new Error("USUARIO_NO_EXISTENTE");
+        }
+        
+        return await this.usuarioRepository.updateUser(id,data);
+    }
+
+    async obtenerDatosUsuario(id:number){
+        return this.usuarioRepository.findUsuarioById(id);
+    }
 
 
 }

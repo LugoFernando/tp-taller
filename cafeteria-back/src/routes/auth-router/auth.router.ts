@@ -6,5 +6,7 @@ const authController = new AuthController();
 
 authRouter.post('/signup', authController.signup);
 authRouter.post('/signin', authController.signin);
+authRouter.put('/perfil/:id', authController.EditarPerfil);
+authRouter.get('/usuario/:id',authController.getUsuario);
 
 export default authRouter;

@@ -1,8 +1,10 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { CryptService } from './crypt.service';
 import { environment } from '../../../../environments/environment.development';
+import { Usuario } from '../../../modules/auth/interfaces/usuario.interface';
+
 
 export interface SignupData {
   email: string;
@@ -42,5 +44,9 @@ export class AuthService {
 
   estaAutenticado(): boolean {
     return this.cryptService.hayToken();
+  }
+
+  perfilUsuario(id:number): Observable<Usuario>{
+    return this.http.get<Usuario>(`${environment.API_URL}/usuario/${id}`);
   }
 }

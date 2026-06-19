@@ -34,5 +34,15 @@ export class AuthService {
         // return { id: user.id, email: user.email, nombre: user.nombre };
         return { token, id: user.id, email: user.email, nombre: user.nombre };
     }
+    async editarPerfil(id, data) {
+        const usuario = await this.usuarioRepository.findUsuarioById(id);
+        if (!usuario) {
+            throw new Error("USUARIO_NO_EXISTENTE");
+        }
+        return await this.usuarioRepository.updateUser(id, data);
+    }
+    async obtenerDatosUsuario(id) {
+        return this.usuarioRepository.findUsuarioById(id);
+    }
 }
 //# sourceMappingURL=auth.service.js.map

@@ -13,5 +13,11 @@ export class UsuarioRepository {
     async create(data) {
         return await prisma.usuario.create({ data });
     }
+    async updateUser(id, data) {
+        return await prisma.usuario.update({
+            where: { id },
+            data
+        });
+    }
 }
 //# sourceMappingURL=usuario.repository.js.map

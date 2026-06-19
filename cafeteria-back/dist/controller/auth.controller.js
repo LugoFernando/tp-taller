@@ -41,5 +41,40 @@ export class AuthController {
             return res.status(500).json({ message: 'Error al iniciar sesión', error });
         }
     };
+    EditarPerfil = async (req, res) => {
+        const id = Number(req.params.id);
+        if (isNaN(id)) {
+            return res.status(400).json("ID inválido");
+        }
+        const { email, nombre, apellido, direccion } = req.body;
+        try {
+            const ususarioActualizado = authService.editarPerfil(id, { email, nombre, apellido, direccion });
+            res.status(200).json(ususarioActualizado);
+        }
+        catch (error) {
+            res.status(500).json({ message: "No se pudo actualizar el usuario", error });
+        }
+    };
+    getUsuario = async (req, res) => {
+        try {
+            const id = Number(req.params.id);
+            if (isNaN(id)) {
+                return res.status(400).json("ID inválido");
+            }
+            const usuario = await authService.obtenerDatosUsuario(id);
+            if (!usuario) {
+                return res.status(404).json({
+                    message: "Usuario no encontrado"
+                });
+            }
+            return res.status(200).json(usuario);
+        }
+        catch (error) {
+            res.status(500).json({
+                message: "No se pudo encontrar el usuario",
+                error
+            });
+        }
+    };
 }
 //# sourceMappingURL=auth.controller.js.map

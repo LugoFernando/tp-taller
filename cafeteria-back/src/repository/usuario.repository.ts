@@ -24,4 +24,11 @@ export class UsuarioRepository {
     }) {
         return await prisma.usuario.create({ data });
     }
+
+    async updateUser(id: number, data:{email:string,nombre:string,apellido:string,direccion:string}){
+        return await prisma.usuario.update({
+            where: {id},
+            data
+        });
+    }
 }
