@@ -1,0 +1,22 @@
+<div class="container mt-4">
+  <h3>Editar Perfil</h3>
+  <form [formGroup]="form" (ngSubmit)="guardar()">
+    <div class="mb-3">
+      <label>Nombre</label>
+      <input class="form-control" formControlName="nombre">
+    </div>
+    <div class="mb-3">
+      <label>Apellido</label>
+      <input class="form-control" formControlName="apellido">
+    </div>
+    <div class="mb-3">
+      <label>Email</label>
+      <input class="form-control" formControlName="email">
+    </div>
+    <div class="mb-3">
+      <label>Dirección</label>
+      <input class="form-control" formControlName="direccion">
+    </div>
+    <button class="btn btn-primary" type="submit">Guardar</button>
+  </form>
+</div>

@@ -15,5 +15,10 @@ export const authRoutes: Routes = [
     path:'mi-perfil',
     loadComponent: () => 
       import('./pages/mi-perfil/mi-perfil').then(c => c.MiPerfil)
+  },
+  {
+    path:'editar-perfil',
+    loadComponent: () => 
+      import('./pages/editar-perfil/editar-perfil').then(c=>c.EditarPerfil)
   }
 ];
