@@ -1,0 +1,37 @@
+@if (producto(); as p) {
+  <section class="page-container detail-page">
+    <p-button icon="pi pi-arrow-left" [text]="true" routerLink="/menu" ariaLabel="Volver al menu" />
+
+    <p-card styleClass="detail-card">
+      <div class="detail-layout">
+        <div class="detail-img">
+          @if (p.imagen) {
+            <img [src]="p.imagen" [alt]="p.nombre" class="detail-photo" />
+          } @else {
+            <div [class]="categoriaClass(p.clasificacion) + ' product-img-default detail-photo-fallback'"></div>
+          }
+        </div>
+        <div class="detail-info">
+          <p-tag [value]="p.clasificacion" styleClass="tag-categoria" />
+          <h1>{{ p.nombre }}</h1>
+          <p class="desc">{{ p.descripcion }}</p>
+          <p class="price">${{ p.precio | number:'1.0-0' }}</p>
+
+          <div class="cantidad-row">
+            <label>Cantidad:</label>
+            <p-inputnumber [(ngModel)]="cantidad" [min]="1" [showButtons]="true" buttonLayout="horizontal" />
+          </div>
+
+          <div class="detail-actions">
+            <p-button
+              icon="pi pi-shopping-cart"
+              styleClass="btn-rounded"
+              ariaLabel="Agregar al carrito"
+              (onClick)="agregarAlCarrito()"
+            />
+          </div>
+        </div>
+      </div>
+    </p-card>
+  </section>
+}

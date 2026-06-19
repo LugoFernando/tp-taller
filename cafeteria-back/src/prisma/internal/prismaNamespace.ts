@@ -384,8 +384,6 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
-  empleado: 'empleado',
-  empresa: 'empresa',
   producto: 'producto',
   usuario: 'usuario'
 } as const
@@ -403,158 +401,10 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "empleado" | "empresa" | "producto" | "usuario"
+    modelProps: "producto" | "usuario"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
-    empleado: {
-      payload: Prisma.$empleadoPayload<ExtArgs>
-      fields: Prisma.empleadoFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.empleadoFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$empleadoPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.empleadoFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$empleadoPayload>
-        }
-        findFirst: {
-          args: Prisma.empleadoFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$empleadoPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.empleadoFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$empleadoPayload>
-        }
-        findMany: {
-          args: Prisma.empleadoFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$empleadoPayload>[]
-        }
-        create: {
-          args: Prisma.empleadoCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$empleadoPayload>
-        }
-        createMany: {
-          args: Prisma.empleadoCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.empleadoCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$empleadoPayload>[]
-        }
-        delete: {
-          args: Prisma.empleadoDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$empleadoPayload>
-        }
-        update: {
-          args: Prisma.empleadoUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$empleadoPayload>
-        }
-        deleteMany: {
-          args: Prisma.empleadoDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.empleadoUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.empleadoUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$empleadoPayload>[]
-        }
-        upsert: {
-          args: Prisma.empleadoUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$empleadoPayload>
-        }
-        aggregate: {
-          args: Prisma.EmpleadoAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateEmpleado>
-        }
-        groupBy: {
-          args: Prisma.empleadoGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.EmpleadoGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.empleadoCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.EmpleadoCountAggregateOutputType> | number
-        }
-      }
-    }
-    empresa: {
-      payload: Prisma.$empresaPayload<ExtArgs>
-      fields: Prisma.empresaFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.empresaFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$empresaPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.empresaFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$empresaPayload>
-        }
-        findFirst: {
-          args: Prisma.empresaFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$empresaPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.empresaFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$empresaPayload>
-        }
-        findMany: {
-          args: Prisma.empresaFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$empresaPayload>[]
-        }
-        create: {
-          args: Prisma.empresaCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$empresaPayload>
-        }
-        createMany: {
-          args: Prisma.empresaCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.empresaCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$empresaPayload>[]
-        }
-        delete: {
-          args: Prisma.empresaDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$empresaPayload>
-        }
-        update: {
-          args: Prisma.empresaUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$empresaPayload>
-        }
-        deleteMany: {
-          args: Prisma.empresaDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.empresaUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.empresaUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$empresaPayload>[]
-        }
-        upsert: {
-          args: Prisma.empresaUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$empresaPayload>
-        }
-        aggregate: {
-          args: Prisma.EmpresaAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateEmpresa>
-        }
-        groupBy: {
-          args: Prisma.empresaGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.EmpresaGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.empresaCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.EmpresaCountAggregateOutputType> | number
-        }
-      }
-    }
     producto: {
       payload: Prisma.$productoPayload<ExtArgs>
       fields: Prisma.productoFieldRefs
@@ -742,30 +592,14 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-export const EmpleadoScalarFieldEnum = {
-  id: 'id',
-  nombre: 'nombre',
-  id_empresa: 'id_empresa',
-  apellido: 'apellido'
-} as const
-
-export type EmpleadoScalarFieldEnum = (typeof EmpleadoScalarFieldEnum)[keyof typeof EmpleadoScalarFieldEnum]
-
-
-export const EmpresaScalarFieldEnum = {
-  id: 'id',
-  nombre: 'nombre'
-} as const
-
-export type EmpresaScalarFieldEnum = (typeof EmpresaScalarFieldEnum)[keyof typeof EmpresaScalarFieldEnum]
-
-
 export const ProductoScalarFieldEnum = {
   id: 'id',
   nombre: 'nombre',
   descripcion: 'descripcion',
   clasificacion: 'clasificacion',
-  precio: 'precio'
+  precio: 'precio',
+  activo: 'activo',
+  imagen: 'imagen'
 } as const
 
 export type ProductoScalarFieldEnum = (typeof ProductoScalarFieldEnum)[keyof typeof ProductoScalarFieldEnum]
@@ -853,6 +687,13 @@ export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, '
  * Reference to a field of type 'Float[]'
  */
 export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 /**
@@ -965,8 +806,6 @@ export type PrismaClientOptions = ({
   queryPlanCacheMaxSize?: number
 }
 export type GlobalOmitConfig = {
-  empleado?: Prisma.empleadoOmit
-  empresa?: Prisma.empresaOmit
   producto?: Prisma.productoOmit
   usuario?: Prisma.usuarioOmit
 }

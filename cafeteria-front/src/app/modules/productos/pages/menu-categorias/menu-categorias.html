@@ -1,0 +1,29 @@
+<section class="page-container">
+  <div class="page-header">
+    <h1>Nuestro Menu</h1>
+    <p>Descubri nuestros cafes y postres</p>
+    <p-inputgroup class="search-bar">
+      <input
+        pInputText
+        type="text"
+        [(ngModel)]="busqueda"
+        (keyup.enter)="buscar()"
+        placeholder="Buscar por nombre..."
+      />
+      <p-inputgroup-addon>
+        <p-button icon="pi pi-search" (onClick)="buscar()" styleClass="btn-rounded" ariaLabel="Buscar" />
+      </p-inputgroup-addon>
+    </p-inputgroup>
+  </div>
+
+  <div class="category-grid">
+    @for (cat of categorias; track cat.slug) {
+      <p-card styleClass="category-card" [routerLink]="['/menu/categoria', cat.slug]">
+        <div class="category-content">
+          <i [class]="cat.icono + ' category-icon'"></i>
+          <h3>{{ cat.nombre }}</h3>
+        </div>
+      </p-card>
+    }
+  </div>
+</section>

@@ -37,7 +37,7 @@ export class AuthService {
 
         if (!user) { throw new Error('CREDENCIALES_INVALIDAS') }
 
-        if (user.password != password) { throw new Error('Contraseña invalida'); }
+        if (user.password != password) { throw new Error('Contrasena invalida'); }
 
         const token = jwt.sign(
             { id: user.id, email: user.email, rol: user.rol },

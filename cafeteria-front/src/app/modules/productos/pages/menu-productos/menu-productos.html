@@ -1,0 +1,66 @@
+<section class="page-container">
+  <div class="page-header">
+    <p-button icon="pi pi-arrow-left" [text]="true" routerLink="/menu" ariaLabel="Volver a categorias" />
+    <h1>{{ tituloCategoria() }}</h1>
+    <p-inputgroup class="search-bar">
+      <input
+        pInputText
+        type="text"
+        [(ngModel)]="busqueda"
+        (keyup.enter)="buscar()"
+        placeholder="Buscar por nombre..."
+      />
+      <p-inputgroup-addon>
+        <p-button icon="pi pi-search" (onClick)="buscar()" styleClass="btn-rounded" ariaLabel="Buscar" />
+      </p-inputgroup-addon>
+    </p-inputgroup>
+  </div>
+
+  @if (cargando()) {
+    <div class="center-state">
+      <p-progressSpinner strokeWidth="4" />
+      <p>Cargando productos...</p>
+    </div>
+  } @else if (productos().length === 0) {
+    <p-message severity="info" styleClass="w-full">No se encontraron productos</p-message>
+  } @else {
+    <div class="product-grid">
+      @for (p of productos(); track p.id) {
+        <p-card styleClass="product-card">
+          <ng-template #header>
+            <div class="product-img">
+              @if (p.imagen) {
+                <img [src]="p.imagen" [alt]="p.nombre" class="product-photo" />
+              } @else {
+                <div [class]="categoriaClass(p.clasificacion) + ' product-img-default product-photo-fallback'"></div>
+              }
+              <p-tag [value]="p.clasificacion" styleClass="tag-categoria" />
+            </div>
+          </ng-template>
+          <h3>{{ p.nombre }}</h3>
+          <p class="product-desc">{{ p.descripcion }}</p>
+          <ng-template #footer>
+            <div class="product-footer">
+              <span class="price">${{ p.precio | number:'1.0-0' }}</span>
+              <div class="product-actions">
+                <p-button
+                  icon="pi pi-shopping-cart"
+                  styleClass="btn-rounded"
+                  ariaLabel="Agregar al carrito"
+                  (onClick)="agregarAlCarrito()"
+                />
+                <p-button
+                  icon="pi pi-eye"
+                  [outlined]="true"
+                  styleClass="btn-rounded"
+                  ariaLabel="Ver detalle"
+                  [routerLink]="['/menu/producto', p.id]"
+                />
+              </div>
+            </div>
+          </ng-template>
+        </p-card>
+      }
+    </div>
+  }
+</section>

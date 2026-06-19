@@ -43,7 +43,7 @@ export class TablaProducto {
     this.messageService.add({
       severity: 'info',
       summary: 'Info',
-      detail: 'Función eliminar pendiente'
+      detail: 'Funcion eliminar pendiente'
     });
 
   }

@@ -1,29 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink, RouterOutlet } from '@angular/router';
-import { FooterComponent } from '../footer/footer.component';
-import { CryptService } from '../../api/services/auth/crypt.service';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { AuthService } from '../../api/services/auth/auth.service';
+import { Button } from 'primeng/button';
 
 @Component({
   selector: 'app-menu',
-  imports: [RouterLink, RouterOutlet, FooterComponent],
+  imports: [RouterLink, RouterLinkActive, Button],
   templateUrl: './menu.component.html',
-  styleUrl: './menu.component.css'
+  styleUrl: './menu.component.css',
 })
-export class MenuComponent implements OnInit {
-  usuarioEmail = '';
-
-  constructor(private cryptService: CryptService, private router: Router) { }
-
-  ngOnInit() {
-    const token = this.cryptService.obtenerToken();
-    if (token) {
-      const payload = JSON.parse(atob(token.split('.')[1]));
-      this.usuarioEmail = payload.email;
-    }
-  }
+export class MenuComponent {
+  auth = inject(AuthService);
+  private router = inject(Router);
 
   logout() {
-    this.cryptService.eliminarToken();
-    this.router.navigate(['/auth/login']);
+    this.auth.logout();
+    this.router.navigate(['/']);
   }
 }

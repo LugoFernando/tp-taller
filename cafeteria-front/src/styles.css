@@ -1,2 +1,115 @@
-/* You can add global styles to this file, and also import other style files */
-@import "primeicons/primeicons.css";
+@import 'primeicons/primeicons.css';
+
+:root {
+  --cafe-oscuro: #3d2b1f;
+  --cafe-medio: #6b4c35;
+  --cafe-claro: #a67c52;
+  --crema: #f5ebe0;
+  --crema-oscuro: #e8ddd0;
+  --acento: #c9a227;
+  --texto: #3d2b1f;
+  --texto-suave: #666;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  background: var(--crema);
+  color: var(--texto);
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+}
+
+.btn-rounded.p-button {
+  border-radius: 50px;
+}
+
+.cat-bebidas-calientes {
+  background: linear-gradient(135deg, #3d2b1f, #6b4c35) !important;
+}
+
+.cat-bebidas-frias {
+  background: linear-gradient(135deg, #a67c52, #c9a227) !important;
+}
+
+.cat-panaderia {
+  background: linear-gradient(135deg, #d4b896, #a67c52) !important;
+}
+
+.cat-pasteleria {
+  background: linear-gradient(135deg, #8b4557, #c4687a) !important;
+}
+
+.cat-salados {
+  background: linear-gradient(135deg, #6b4c35, #a67c52) !important;
+}
+
+.product-img-default {
+  background: linear-gradient(135deg, #3d2b1f 0%, #6b4c35 100%);
+}
+
+:host ::ng-deep .tag-categoria.p-tag,
+.tag-categoria.p-tag {
+  background: var(--cafe-medio) !important;
+  color: var(--crema) !important;
+}
+
+.page-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.page-header h1 {
+  color: var(--cafe-oscuro);
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+  text-transform: capitalize;
+}
+
+.page-header p {
+  color: var(--texto-suave);
+}
+
+.center-state {
+  text-align: center;
+  color: var(--texto-suave);
+  padding: 3rem;
+}
+
+.footer {
+  text-align: center;
+  padding: 1.25rem;
+  background: var(--cafe-oscuro);
+  color: var(--crema);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .page-header h1 {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-header h1 {
+    font-size: 1.5rem;
+  }
+}

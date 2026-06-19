@@ -1,31 +1,27 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './public/home/home.component';
-import { MenuComponent } from './public/menu/menu.component';
 import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
-  // Auth — sin layout (sin sidebar)
+  {
+    path: '',
+    component: HomeComponent,
+  },
   {
     path: 'auth',
     loadChildren: () =>
       import('./modules/auth/auth.routes').then(a => a.authRoutes)
   },
-  // Todo lo demás — con layout (con sidebar), requiere login
   {
-    path: '',
-    component: MenuComponent,
+    path: 'menu',
+    loadChildren: () =>
+      import('./modules/productos/menu.routes').then(m => m.menuRoutes)
+  },
+  {
+    path: 'productos',
     canActivate: [authGuard],
-    children: [
-      {
-        path: '',
-        component: HomeComponent
-      },
-      {
-        path: 'productos',
-        loadChildren: () =>
-          import('./modules/productos/productos.routes').then(p => p.productosRoutes)
-      }
-    ]
+    loadChildren: () =>
+      import('./modules/productos/productos.routes').then(p => p.productosRoutes)
   },
   {
     path: '**',

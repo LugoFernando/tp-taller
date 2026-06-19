@@ -26,6 +26,6 @@ export const authMiddleware = (req: AuthRequest, res: Response, next: NextFuncti
         req.userRol = payload.rol;
         next();
     } catch {
-        return res.status(401).json({ message: 'Token inválido o expirado' });
+        return res.status(401).json({ message: 'Token invalido o expirado' });
     }
 };

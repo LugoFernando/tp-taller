@@ -28,10 +28,10 @@ export class AuthController {
         } catch (error: any) {
 
             if (error.message === 'EMAIL_EN_USO') {
-                return res.status(409).json({ message: 'El email ya está en uso' });
+                return res.status(409).json({ message: 'El email ya esta en uso' });
             }
             if (error.message === 'PASSWORD_INVALIDO') {
-                return res.status(400).json({ message: 'La contraseña debe tener mínimo 8 caracteres, una mayúscula, un número y un carácter especial' });
+                return res.status(400).json({ message: 'La contrasena debe tener minimo 8 caracteres, una mayuscula, un numero y un caracter especial' });
             }
             return res.status(500).json({ message: 'Error al registrar usuario', error });
         }
@@ -46,7 +46,7 @@ export class AuthController {
 
             if (!email || !password) {
 
-                return res.status(400).json({ message: 'Email y contraseña son obligatorios' });
+                return res.status(400).json({ message: 'Email y contrasena son obligatorios' });
 
             }
 
@@ -56,9 +56,9 @@ export class AuthController {
 
         } catch (error: any) {
             if (error.message === 'CREDENCIALES_INVALIDAS') {
-                return res.status(401).json({ message: 'Credenciales inválidas' });
+                return res.status(401).json({ message: 'Credenciales invalidas' });
             }
-            return res.status(500).json({ message: 'Error al iniciar sesión', error });
+            return res.status(500).json({ message: 'Error al iniciar sesion', error });
         }
 
     }

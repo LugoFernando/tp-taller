@@ -1,0 +1,10 @@
+.admin-page {
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+@media (max-width: 768px) {
+  :host ::ng-deep .p-datatable-wrapper {
+    overflow-x: auto;
+  }
+}
