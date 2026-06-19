@@ -63,6 +63,51 @@ export class AuthController {
 
     }
 
+    public EditarPerfil = async (req: Request, res: Response) => {
 
+        const id = Number(req.params.id);
+
+        if (isNaN(id)) {
+            return res.status(400).json("ID inválido");
+        }
+
+        const {email,nombre,apellido,direccion} = req.body;
+        try{
+            const ususarioActualizado= authService.editarPerfil(id,{email,nombre,apellido,direccion});
+            res.status(200).json(ususarioActualizado);
+        }catch(error){
+            res.status(500).json({message:"No se pudo actualizar el usuario",error});
+        }
+    }
+
+    public getUsuario = async (req: Request, res: Response) => {
+    
+            try {
+    
+                const id: number = Number(req.params.id);
+    
+                if (isNaN(id)) {
+                    return res.status(400).json("ID inválido");
+                }
+    
+                const usuario = await authService.obtenerDatosUsuario(id);
+    
+                if (!usuario) {
+                    return res.status(404).json({
+                        message: "Usuario no encontrado"
+                    });
+                }
+    
+                return res.status(200).json(usuario);
+    
+            } catch (error) {
+    
+                res.status(500).json({
+                    message: "No se pudo encontrar el usuario",
+                    error
+                });
+    
+            }
+        }
 
 }

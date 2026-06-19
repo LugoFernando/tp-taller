@@ -11,19 +11,23 @@ export class ProductoController {
     constructor() { }
 
     public getProductos = async (req: Request, res: Response) => {
-        try {
-            const nombre = req.query.nombre as string | undefined;
-            const clasificacion = req.query.clasificacion as string | undefined;
-            const productos = await productoService.obtenerProductos({ nombre, clasificacion });
+          try {
+        const nombre = req.query.nombre as string | undefined;
+        const clasificacion = req.query.clasificacion as string | undefined;
 
-            res.status(200).json(productos);
+        const filtros: { nombre?: string; clasificacion?: string } = {};
+        if (nombre !== undefined) filtros.nombre = nombre;
+        if (clasificacion !== undefined) filtros.clasificacion = clasificacion;
 
-        } catch (error) {
-            res.status(500).json({
-                message: "Error al obtener los productos",
-                error
-            });
-        }
+        const productos = await productoService.obtenerProductos(filtros);
+
+        res.status(200).json(productos);
+    } catch (error) {
+        res.status(500).json({
+            message: "Error al obtener los productos",
+            error
+        });
+    }
     }
 
     public getProductosAdmin = async (_req: Request, res: Response) => {
