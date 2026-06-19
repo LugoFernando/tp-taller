@@ -51,9 +51,17 @@ export class AuthService {
     return this.cryptService.hayToken();
   }
 
+  obtenerId():number {
+    const token = this.cryptService.obtenerToken();
+    if(!token) return 0;
+    const payload = JSON.parse(atob(token.split('.')[1]));
+
+    return payload.id ?? 0;
+  }
+
 
   perfilUsuario(id:number): Observable<Usuario>{
-    return this.http.get<Usuario>(`${this.apiUrl}/usuario/${id}`);}
+    return this.http.get<Usuario>(`${this.apiUrl}/auth/${id}`);}
 
   obtenerEmail(): string {
     const token = this.cryptService.obtenerToken();

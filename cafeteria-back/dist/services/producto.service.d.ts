@@ -3,45 +3,62 @@ import type { ProductoRepository } from "../repository/producto.repository.js";
 export declare class ProductoService {
     private productoRepository;
     constructor(productoRepository: ProductoRepository);
-    obtenerProductos(): Promise<{
-        id: number;
+    obtenerProductos(filtros?: {
+        nombre?: string;
+        clasificacion?: string;
+    }): Promise<{
         nombre: string;
-        descripcion: string;
         clasificacion: string;
+        id: number;
+        descripcion: string;
         precio: number;
+        activo: boolean;
+        imagen: string | null;
+    }[]>;
+    obtenerProductosAdmin(): Promise<{
+        nombre: string;
+        clasificacion: string;
+        id: number;
+        descripcion: string;
+        precio: number;
+        activo: boolean;
+        imagen: string | null;
     }[]>;
     obtenerProducto(id: number): Promise<{
-        id: number;
         nombre: string;
-        descripcion: string;
         clasificacion: string;
-        precio: number;
-    } | null>;
-    crearProducto(producto: Producto): Promise<{
         id: number;
-        nombre: string;
         descripcion: string;
-        clasificacion: string;
         precio: number;
+        activo: boolean;
+        imagen: string | null;
     }>;
-    updateProducto(id: number, data: {
+    crearProducto(producto: Producto): Promise<{
         nombre: string;
-        descripcion: string;
         clasificacion: string;
-        precio: number;
-    }): Promise<{
         id: number;
-        nombre: string;
         descripcion: string;
-        clasificacion: string;
         precio: number;
+        activo: boolean;
+        imagen: string | null;
+    }>;
+    updateProducto(id: number, data: Partial<Producto>): Promise<{
+        nombre: string;
+        clasificacion: string;
+        id: number;
+        descripcion: string;
+        precio: number;
+        activo: boolean;
+        imagen: string | null;
     }>;
     deleteProducto(id: number): Promise<{
-        id: number;
         nombre: string;
-        descripcion: string;
         clasificacion: string;
+        id: number;
+        descripcion: string;
         precio: number;
+        activo: boolean;
+        imagen: string | null;
     }>;
 }
 //# sourceMappingURL=producto.service.d.ts.map

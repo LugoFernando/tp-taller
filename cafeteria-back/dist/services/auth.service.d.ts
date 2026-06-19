@@ -5,8 +5,8 @@ export declare class AuthService {
     constructor(usuarioRepository: UsuarioRepository);
     validarPassword: (pwd: string) => boolean;
     registrarse(data: Usuario): Promise<{
-        id: number;
         nombre: string;
+        id: number;
         email: string;
         password: string;
         apellido: string;
@@ -25,8 +25,8 @@ export declare class AuthService {
         apellido: string;
         direccion: string;
     }): Promise<{
-        id: number;
         nombre: string;
+        id: number;
         email: string;
         password: string;
         apellido: string;
@@ -34,8 +34,8 @@ export declare class AuthService {
         rol: string;
     }>;
     obtenerDatosUsuario(id: number): Promise<{
-        id: number;
         nombre: string;
+        id: number;
         email: string;
         password: string;
         apellido: string;

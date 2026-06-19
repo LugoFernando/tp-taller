@@ -1,0 +1,25 @@
+<div class="container admin-page">
+    <div class="card shadow mt-4">
+        <div class="card-header admin-header">
+            <h3 class="mb-0">Mi Perfil</h3>
+        </div>
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-md-3 fw-bold">Nombre:</div>
+                <div class="col-md-9">{{ usuario?.nombre }}</div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-3 fw-bold">Apellido:</div>
+                <div class="col-md-9">{{ usuario?.apellido }}</div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-3 fw-bold">Email:</div>
+                <div class="col-md-9">{{ usuario?.email }}</div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-3 fw-bold">Dirección:</div>
+                <div class="col-md-9">{{ usuario?.direccion }}</div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,49 +1,14 @@
 export declare class EmpleadoRepository {
-    findAllEmpleados(): Promise<({
-        empresa: {
-            id: number;
-            nombre: string;
-        } | null;
-    } & {
-        id: number;
-        nombre: string;
-        apellido: string | null;
-        id_empresa: number | null;
-    })[]>;
-    findEmpleadoById(id: number): Promise<({
-        empresa: {
-            id: number;
-            nombre: string;
-        } | null;
-    } & {
-        id: number;
-        nombre: string;
-        apellido: string | null;
-        id_empresa: number | null;
-    }) | null>;
+    findAllEmpleados(): Promise<any>;
+    findEmpleadoById(id: number): Promise<any>;
     createEmpleado(data: {
         nombre: string;
         apellido: string;
-    }): Promise<{
-        id: number;
-        nombre: string;
-        apellido: string | null;
-        id_empresa: number | null;
-    }>;
+    }): Promise<any>;
     updateEmpleado(id: number, data: {
         nombre: string;
         apellido: string;
-    }): Promise<{
-        id: number;
-        nombre: string;
-        apellido: string | null;
-        id_empresa: number | null;
-    }>;
-    deleteEmpleado(id: number): Promise<{
-        id: number;
-        nombre: string;
-        apellido: string | null;
-        id_empresa: number | null;
-    }>;
+    }): Promise<any>;
+    deleteEmpleado(id: number): Promise<any>;
 }
 //# sourceMappingURL=empleado.repository.d.ts.map

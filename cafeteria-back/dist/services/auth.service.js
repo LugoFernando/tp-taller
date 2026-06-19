@@ -28,7 +28,7 @@ export class AuthService {
             throw new Error('CREDENCIALES_INVALIDAS');
         }
         if (user.password != password) {
-            throw new Error('Contraseña invalida');
+            throw new Error('Contrasena invalida');
         }
         const token = jwt.sign({ id: user.id, email: user.email, rol: user.rol }, config.jwtSecret, { expiresIn: '24h' });
         // return { id: user.id, email: user.email, nombre: user.nombre };
@@ -42,7 +42,11 @@ export class AuthService {
         return await this.usuarioRepository.updateUser(id, data);
     }
     async obtenerDatosUsuario(id) {
-        return this.usuarioRepository.findUsuarioById(id);
+        const user = this.usuarioRepository.findUsuarioById(id);
+        if (!user) {
+            throw new Error("NO_EXISTE_USUARIO");
+        }
+        return user;
     }
 }
 //# sourceMappingURL=auth.service.js.map

@@ -11,8 +11,8 @@ export interface PrismaClientConstructor {
    * const prisma = new PrismaClient({
    *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
    * })
-   * // Fetch zero or more Empleados
-   * const empleados = await prisma.empleado.findMany()
+   * // Fetch zero or more Productos
+   * const productos = await prisma.producto.findMany()
    * ```
    *
    * Read more in our [docs](https://pris.ly/d/client).
@@ -30,8 +30,8 @@ export interface PrismaClientConstructor {
  * const prisma = new PrismaClient({
  *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
  * })
- * // Fetch zero or more Empleados
- * const empleados = await prisma.empleado.findMany()
+ * // Fetch zero or more Productos
+ * const productos = await prisma.producto.findMany()
  * ```
  *
  * Read more in our [docs](https://pris.ly/d/client).
@@ -118,35 +118,13 @@ export interface PrismaClient<in LogOpts extends Prisma.LogLevel = never, in out
         extArgs: ExtArgs;
     }>>;
     /**
- * `prisma.empleado`: Exposes CRUD operations for the **empleado** model.
+ * `prisma.producto`: Exposes CRUD operations for the **producto** model.
   * Example usage:
   * ```ts
-  * // Fetch zero or more Empleados
-  * const empleados = await prisma.empleado.findMany()
+  * // Fetch zero or more Productos
+  * const productos = await prisma.producto.findMany()
   * ```
   */
-    get empleado(): Prisma.empleadoDelegate<ExtArgs, {
-        omit: OmitOpts;
-    }>;
-    /**
-     * `prisma.empresa`: Exposes CRUD operations for the **empresa** model.
-      * Example usage:
-      * ```ts
-      * // Fetch zero or more Empresas
-      * const empresas = await prisma.empresa.findMany()
-      * ```
-      */
-    get empresa(): Prisma.empresaDelegate<ExtArgs, {
-        omit: OmitOpts;
-    }>;
-    /**
-     * `prisma.producto`: Exposes CRUD operations for the **producto** model.
-      * Example usage:
-      * ```ts
-      * // Fetch zero or more Productos
-      * const productos = await prisma.producto.findMany()
-      * ```
-      */
     get producto(): Prisma.productoDelegate<ExtArgs, {
         omit: OmitOpts;
     }>;

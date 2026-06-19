@@ -1,5 +1,3 @@
-export type * from './models/empleado.js';
-export type * from './models/empresa.js';
 export type * from './models/producto.js';
 export type * from './models/usuario.js';
 export type * from './commonInputTypes.js';

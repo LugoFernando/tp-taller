@@ -26,8 +26,6 @@ export declare const JsonNull: import("@prisma/client-runtime-utils").JsonNullCl
  */
 export declare const AnyNull: import("@prisma/client-runtime-utils").AnyNullClass;
 export declare const ModelName: {
-    readonly empleado: "empleado";
-    readonly empresa: "empresa";
     readonly producto: "producto";
     readonly usuario: "usuario";
 };
@@ -39,24 +37,14 @@ export declare const TransactionIsolationLevel: {
     readonly Serializable: "Serializable";
 };
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel];
-export declare const EmpleadoScalarFieldEnum: {
-    readonly id: "id";
-    readonly nombre: "nombre";
-    readonly id_empresa: "id_empresa";
-    readonly apellido: "apellido";
-};
-export type EmpleadoScalarFieldEnum = (typeof EmpleadoScalarFieldEnum)[keyof typeof EmpleadoScalarFieldEnum];
-export declare const EmpresaScalarFieldEnum: {
-    readonly id: "id";
-    readonly nombre: "nombre";
-};
-export type EmpresaScalarFieldEnum = (typeof EmpresaScalarFieldEnum)[keyof typeof EmpresaScalarFieldEnum];
 export declare const ProductoScalarFieldEnum: {
     readonly id: "id";
     readonly nombre: "nombre";
     readonly descripcion: "descripcion";
     readonly clasificacion: "clasificacion";
     readonly precio: "precio";
+    readonly activo: "activo";
+    readonly imagen: "imagen";
 };
 export type ProductoScalarFieldEnum = (typeof ProductoScalarFieldEnum)[keyof typeof ProductoScalarFieldEnum];
 export declare const UsuarioScalarFieldEnum: {

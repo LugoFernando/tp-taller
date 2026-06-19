@@ -63,7 +63,13 @@ export class AuthService {
     }
 
     async obtenerDatosUsuario(id:number){
-        return this.usuarioRepository.findUsuarioById(id);
+        const user=this.usuarioRepository.findUsuarioById(id);
+
+        if(!user){
+            throw new Error("NO_EXISTE_USUARIO");
+        }
+
+        return user;
     }
 
 

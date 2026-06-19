@@ -68,8 +68,6 @@ export const JsonNull = runtime.JsonNull;
  */
 export const AnyNull = runtime.AnyNull;
 export const ModelName = {
-    empleado: 'empleado',
-    empresa: 'empresa',
     producto: 'producto',
     usuario: 'usuario'
 };
@@ -82,22 +80,14 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
     RepeatableRead: 'RepeatableRead',
     Serializable: 'Serializable'
 });
-export const EmpleadoScalarFieldEnum = {
-    id: 'id',
-    nombre: 'nombre',
-    id_empresa: 'id_empresa',
-    apellido: 'apellido'
-};
-export const EmpresaScalarFieldEnum = {
-    id: 'id',
-    nombre: 'nombre'
-};
 export const ProductoScalarFieldEnum = {
     id: 'id',
     nombre: 'nombre',
     descripcion: 'descripcion',
     clasificacion: 'clasificacion',
-    precio: 'precio'
+    precio: 'precio',
+    activo: 'activo',
+    imagen: 'imagen'
 };
 export const UsuarioScalarFieldEnum = {
     id: 'id',

@@ -5,6 +5,6 @@ const authController = new AuthController();
 authRouter.post('/signup', authController.signup);
 authRouter.post('/signin', authController.signin);
 authRouter.put('/perfil/:id', authController.EditarPerfil);
-authRouter.get('/usuario/:id', authController.getUsuario);
+authRouter.get('/:id', authController.getUsuario);
 export default authRouter;
 //# sourceMappingURL=auth.router.js.map

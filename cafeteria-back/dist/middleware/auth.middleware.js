@@ -14,7 +14,7 @@ export const authMiddleware = (req, res, next) => {
         next();
     }
     catch {
-        return res.status(401).json({ message: 'Token inválido o expirado' });
+        return res.status(401).json({ message: 'Token invalido o expirado' });
     }
 };
 //# sourceMappingURL=auth.middleware.js.map

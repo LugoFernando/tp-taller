@@ -3,16 +3,6 @@ export { Prisma };
 export * as $Enums from './enums.js';
 export * from './enums.js';
 /**
- * Model empleado
- *
- */
-export type empleado = Prisma.empleadoModel;
-/**
- * Model empresa
- *
- */
-export type empresa = Prisma.empresaModel;
-/**
  * Model producto
  *
  */

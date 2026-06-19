@@ -12,8 +12,8 @@ export * from "./enums.js";
  * const prisma = new PrismaClient({
  *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
  * })
- * // Fetch zero or more Empleados
- * const empleados = await prisma.empleado.findMany()
+ * // Fetch zero or more Productos
+ * const productos = await prisma.producto.findMany()
  * ```
  *
  * Read more in our [docs](https://pris.ly/d/client).
@@ -21,16 +21,6 @@ export * from "./enums.js";
 export declare const PrismaClient: $Class.PrismaClientConstructor;
 export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts extends Prisma.PrismaClientOptions["omit"] = Prisma.PrismaClientOptions["omit"], ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = $Class.PrismaClient<LogOpts, OmitOpts, ExtArgs>;
 export { Prisma };
-/**
- * Model empleado
- *
- */
-export type empleado = Prisma.empleadoModel;
-/**
- * Model empresa
- *
- */
-export type empresa = Prisma.empresaModel;
 /**
  * Model producto
  *

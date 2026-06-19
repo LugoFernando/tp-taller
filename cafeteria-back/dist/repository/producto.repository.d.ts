@@ -1,48 +1,61 @@
+import type { Producto } from '../models/producto.model.js';
 export declare class ProductoRepository {
-    findAllProductos(): Promise<{
-        id: number;
+    findAllProductos(filtros?: {
+        nombre?: string;
+        clasificacion?: string;
+    }): Promise<{
         nombre: string;
-        descripcion: string;
         clasificacion: string;
+        id: number;
+        descripcion: string;
         precio: number;
+        activo: boolean;
+        imagen: string | null;
+    }[]>;
+    findAllProductosAdmin(): Promise<{
+        nombre: string;
+        clasificacion: string;
+        id: number;
+        descripcion: string;
+        precio: number;
+        activo: boolean;
+        imagen: string | null;
     }[]>;
     findProductoById(id: number): Promise<{
-        id: number;
         nombre: string;
-        descripcion: string;
         clasificacion: string;
+        id: number;
+        descripcion: string;
         precio: number;
+        activo: boolean;
+        imagen: string | null;
     } | null>;
-    createProducto(data: {
+    createProducto(data: Producto): Promise<{
         nombre: string;
-        descripcion: string;
         clasificacion: string;
-        precio: number;
-    }): Promise<{
         id: number;
-        nombre: string;
         descripcion: string;
-        clasificacion: string;
         precio: number;
+        activo: boolean;
+        imagen: string | null;
     }>;
-    updateProducto(id: number, data: {
+    updateProducto(id: number, data: Partial<Producto>): Promise<{
         nombre: string;
-        descripcion: string;
         clasificacion: string;
-        precio: number;
-    }): Promise<{
         id: number;
-        nombre: string;
         descripcion: string;
-        clasificacion: string;
         precio: number;
+        activo: boolean;
+        imagen: string | null;
     }>;
     deleteProducto(id: number): Promise<{
-        id: number;
         nombre: string;
-        descripcion: string;
         clasificacion: string;
+        id: number;
+        descripcion: string;
         precio: number;
+        activo: boolean;
+        imagen: string | null;
     }>;
 }
 //# sourceMappingURL=producto.repository.d.ts.map

@@ -3,11 +3,18 @@ export class ProductoService {
     constructor(productoRepository) {
         this.productoRepository = productoRepository;
     }
-    async obtenerProductos() {
-        return await this.productoRepository.findAllProductos();
+    async obtenerProductos(filtros) {
+        return await this.productoRepository.findAllProductos(filtros);
+    }
+    async obtenerProductosAdmin() {
+        return await this.productoRepository.findAllProductosAdmin();
     }
     async obtenerProducto(id) {
-        return await this.productoRepository.findProductoById(id);
+        const producto = await this.productoRepository.findProductoById(id);
+        if (!producto) {
+            throw new Error("ProductoNoExiste");
+        }
+        return producto;
     }
     async crearProducto(producto) {
         const { nombre, descripcion, clasificacion, precio } = producto;
@@ -15,22 +22,18 @@ export class ProductoService {
             throw new Error("El nombre es obligatorio");
         }
         if (!descripcion || typeof descripcion !== "string") {
-            throw new Error("La descripción es obligatoria");
+            throw new Error("La descripcion es obligatoria");
         }
         if (!clasificacion || typeof clasificacion !== "string") {
-            throw new Error("La clasificación es obligatoria");
+            throw new Error("La clasificacion es obligatoria");
         }
         if (precio === undefined || isNaN(Number(precio))) {
-            throw new Error("El precio debe ser un número válido");
+            throw new Error("El precio debe ser un numero valido");
         }
-        return await this.productoRepository.createProducto({
-            nombre,
-            descripcion,
-            clasificacion,
-            precio
-        });
+        return await this.productoRepository.createProducto(producto);
     }
     async updateProducto(id, data) {
+        await this.obtenerProducto(id);
         return await this.productoRepository.updateProducto(id, data);
     }
     async deleteProducto(id) {

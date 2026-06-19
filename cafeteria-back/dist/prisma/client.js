@@ -27,8 +27,8 @@ export * from "./enums.js";
  * const prisma = new PrismaClient({
  *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
  * })
- * // Fetch zero or more Empleados
- * const empleados = await prisma.empleado.findMany()
+ * // Fetch zero or more Productos
+ * const productos = await prisma.producto.findMany()
  * ```
  *
  * Read more in our [docs](https://pris.ly/d/client).

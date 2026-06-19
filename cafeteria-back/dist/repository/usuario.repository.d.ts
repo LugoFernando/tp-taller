@@ -1,7 +1,7 @@
 export declare class UsuarioRepository {
     findUsuarioById(id: number): Promise<{
-        id: number;
         nombre: string;
+        id: number;
         email: string;
         password: string;
         apellido: string;
@@ -9,8 +9,8 @@ export declare class UsuarioRepository {
         rol: string;
     } | null>;
     findUsuarioByEmail(email: string): Promise<{
-        id: number;
         nombre: string;
+        id: number;
         email: string;
         password: string;
         apellido: string;
@@ -24,8 +24,8 @@ export declare class UsuarioRepository {
         apellido: string;
         direccion: string;
     }): Promise<{
-        id: number;
         nombre: string;
+        id: number;
         email: string;
         password: string;
         apellido: string;
@@ -38,8 +38,8 @@ export declare class UsuarioRepository {
         apellido: string;
         direccion: string;
     }): Promise<{
-        id: number;
         nombre: string;
+        id: number;
         email: string;
         password: string;
         apellido: string;
