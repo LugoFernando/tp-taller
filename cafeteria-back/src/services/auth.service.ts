@@ -52,6 +52,25 @@ export class AuthService {
 
     }
 
+    async editarPerfil(id:number,data:{email:string,nombre:string,apellido:string,direccion:string}){
+        const usuario = await this.usuarioRepository.findUsuarioById(id);
+
+        if(!usuario){
+            throw new Error("USUARIO_NO_EXISTENTE");
+        }
+
+        return await this.usuarioRepository.updateUser(id,data);
+    }
+
+    async obtenerDatosUsuario(id:number){
+        const user = await this.usuarioRepository.findUsuarioById(id);
+
+        if(!user){
+            throw new Error("NO_EXISTE_USUARIO");
+        }
+
+        return user;
+    }
 
     async recoverPassword(email: string) {
         const user = await this.usuarioRepository.findUsuarioByEmail(email);

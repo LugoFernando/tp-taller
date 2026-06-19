@@ -24,11 +24,17 @@ export class UsuarioRepository {
     }) {
         return await prisma.usuario.create({ data });
     }
-
     async updatePasswordById(id: number, password: string) {
-    return await prisma.usuario.update({
-        where: { id },
-        data: { password }
-    });
-}
+        return await prisma.usuario.update({
+            where: { id },
+            data: { password }
+        });
+    }
+
+    async updateUser(id: number, data: { email: string; nombre: string; apellido: string; direccion: string }) {
+        return await prisma.usuario.update({
+            where: { id },
+            data
+        });
+    }
 }

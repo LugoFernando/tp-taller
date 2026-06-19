@@ -20,6 +20,7 @@
         <div class="user-info">
           <img src="/images/usuario/default.png" alt="Usuario" class="user-avatar" />
           <span class="user-greeting">Hola {{ auth.obtenerNombre() }}</span>
+          <p-button [text]="true" class="nav-link-btn" routerLink="/auth/mi-perfil" routerLinkActive="active" styleClass="nav-link-btn">Mi perfil</p-button>
         </div>
         <p-button
           label="Salir"

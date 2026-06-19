@@ -62,7 +62,48 @@ export class AuthController {
         }
 
     }
+    public EditarPerfil = async (req: Request, res: Response) => {
 
+        const id = Number(req.params.id);
+
+        if (isNaN(id)) {
+            return res.status(400).json("ID inválido");
+        }
+
+        const { email, nombre, apellido, direccion } = req.body;
+        try {
+            const ususarioActualizado = await authService.editarPerfil(id, { email, nombre, apellido, direccion });
+            res.status(200).json(ususarioActualizado);
+        } catch (error) {
+            res.status(500).json({ message: "No se pudo actualizar el usuario", error });
+        }
+    }
+
+    public getUsuario = async (req: Request, res: Response) => {
+        try {
+            const id: number = Number(req.params.id);
+
+            if (isNaN(id)) {
+                return res.status(400).json("ID inválido");
+            }
+
+            const usuario = await authService.obtenerDatosUsuario(id);
+
+            if (!usuario) {
+                return res.status(404).json({
+                    message: "Usuario no encontrado"
+                });
+            }
+
+            return res.status(200).json(usuario);
+
+        } catch (error) {
+            res.status(500).json({
+                message: "No se pudo encontrar el usuario",
+                error
+            });
+        }
+    }
 
     public recoverPassword = async (req: Request, res: Response) => {
         try {
@@ -85,25 +126,26 @@ export class AuthController {
 
 
     public resetPassword = async (req: Request, res: Response) => {
-    try {
-        const { token, password, confirmPassword } = req.body;
-        if (!token || !password || !confirmPassword) {
-            return res.status(400).json({ message: 'Token y nueva contraseña son obligatorios' });
-        }
+        try {
+            const { token, password, confirmPassword } = req.body;
+            if (!token || !password || !confirmPassword) {
+                return res.status(400).json({ message: 'Token y nueva contraseña son obligatorios' });
+            }
 
-        await authService.resetPassword(token, password, confirmPassword);
-        return res.status(200).json({ message: 'Contraseña reestablecida correctamente' });
-    } catch (error: any) {
-        if (error.message === 'TOKEN_INVALIDO') {
-            return res.status(400).json({ message: 'Token inválido o expirado' });
+            await authService.resetPassword(token, password, confirmPassword);
+            return res.status(200).json({ message: 'Contraseña reestablecida correctamente' });
+        } catch (error: any) {
+            if (error.message === 'TOKEN_INVALIDO') {
+                return res.status(400).json({ message: 'Token inválido o expirado' });
+            }
+            if (error.message === 'PASSWORD_INVALIDO') {
+                return res.status(400).json({ message: 'La contraseña debe tener minimo 8 caracteres, una mayuscula, un numero y un caracter especial' });
+            }
+            if (error.message === 'PASSWORDS_NO_COINCIDEN') {
+                return res.status(400).json({ message: 'Las contraseñas no coinciden' });
+            }
+            return res.status(500).json({ message: 'Error al reestablecer contraseña', error });
         }
-        if (error.message === 'PASSWORD_INVALIDO') {
-            return res.status(400).json({ message: 'La contraseña debe tener minimo 8 caracteres, una mayuscula, un numero y un caracter especial' });
-        }
-        if (error.message === 'PASSWORDS_NO_COINCIDEN') {
-            return res.status(400).json({ message: 'Las contraseñas no coinciden' });
-        }
-        return res.status(500).json({ message: 'Error al reestablecer contraseña', error });
     }
-}
+
 }
