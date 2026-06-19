@@ -59,6 +59,9 @@ export class AuthService {
     return payload.id ?? 0;
   }
 
+  editarPerfil(id:number, data: Partial<Usuario>){
+    return this.http.put<Usuario>(`${this.apiUrl}/auth/perfil/${id}`,data);
+  }
 
   perfilUsuario(id:number): Observable<Usuario>{
     return this.http.get<Usuario>(`${this.apiUrl}/auth/${id}`);}
