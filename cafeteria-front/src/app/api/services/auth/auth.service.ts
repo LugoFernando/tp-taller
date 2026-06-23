@@ -80,6 +80,10 @@ export class AuthService {
     return payload.rol === 'admin';
   }
 
+  listarUsuarios() {
+    return this.http.get<Omit<Usuario, 'password'>[]>(`${this.apiUrl}/auth/usuarios`);
+  }
+
   obtenerNombre(): string {
     return this.cryptService.obtenerNombre() ?? '';
   }

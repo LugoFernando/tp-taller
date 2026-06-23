@@ -1,0 +1,15 @@
+.admin-top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.admin-top h1 {
+  color: var(--cafe-oscuro, #3d2b1f);
+  font-size: 1.75rem;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}

@@ -16,14 +16,22 @@
     </p-inputgroup>
   </div>
 
-  <div class="category-grid">
-    @for (cat of categorias; track cat.slug) {
-      <p-card styleClass="category-card" [routerLink]="['/menu/categoria', cat.slug]">
-        <div class="category-content">
-          <i [class]="cat.icono + ' category-icon'"></i>
+  <div class="category-layout">
+    <div class="category-row row-top">
+      @for (cat of filaSuperior; track cat.slug) {
+        <p-card styleClass="category-card" [routerLink]="['/menu/categoria', cat.slug]">
+          <img [src]="cat.imagen" [alt]="cat.nombre" class="category-image" />
           <h3>{{ cat.nombre }}</h3>
-        </div>
-      </p-card>
-    }
+        </p-card>
+      }
+    </div>
+    <div class="category-row row-bottom">
+      @for (cat of filaInferior; track cat.slug) {
+        <p-card styleClass="category-card" [routerLink]="['/menu/categoria', cat.slug]">
+          <img [src]="cat.imagen" [alt]="cat.nombre" class="category-image" />
+          <h3>{{ cat.nombre }}</h3>
+        </p-card>
+      }
+    </div>
   </div>
 </section>

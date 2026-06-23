@@ -25,7 +25,8 @@ import { Card } from 'primeng/card';
 export class MenuCategoriasComponent {
   private router = inject(Router);
 
-  categorias = CATEGORIAS;
+  filaSuperior = CATEGORIAS.slice(0, 3);
+  filaInferior = CATEGORIAS.slice(3, 5);
   busqueda = '';
 
   buscar() {

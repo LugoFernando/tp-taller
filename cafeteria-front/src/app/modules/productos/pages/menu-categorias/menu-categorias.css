@@ -3,63 +3,69 @@
   margin: 1.5rem auto 0;
 }
 
-.category-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+.category-layout {
+  display: flex;
+  flex-direction: column;
   gap: 1.5rem;
+  align-items: center;
+}
+
+.category-row {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+:host ::ng-deep .row-top .category-card.p-card {
+  width: calc(33.333% - 1rem);
+  min-width: 200px;
+  max-width: 280px;
+}
+
+:host ::ng-deep .row-bottom .category-card.p-card {
+  width: calc(50% - 1rem);
+  min-width: 200px;
+  max-width: 280px;
 }
 
 :host ::ng-deep .category-card.p-card {
   cursor: pointer;
   overflow: hidden;
   box-shadow: 0 2px 12px rgba(61, 43, 31, 0.12);
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s;
   border: 1px solid var(--crema-oscuro, #e8ddd0);
+  text-align: center;
 }
 
 :host ::ng-deep .category-card.p-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 6px 20px rgba(61, 43, 31, 0.18);
 }
 
-.category-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  padding: 2rem 1rem;
-  text-align: center;
+.category-image {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
 }
 
-.category-icon {
-  font-size: 2.5rem;
-  color: var(--cafe-medio, #6b4c35);
-}
-
-.category-content h3 {
-  color: var(--cafe-oscuro, #3d2b1f);
-  font-size: 1rem;
+:host ::ng-deep .category-card h3 {
+  padding: 0.75rem;
+  color: var(--crema-oscuro, #e8ddd0);
+  font-size: 0.95rem;
   font-weight: 700;
   text-transform: capitalize;
 }
 
 @media (max-width: 768px) {
-  .category-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+  .category-row {
+    flex-direction: column;
+    align-items: center;
   }
 
-  .category-content {
-    padding: 1.5rem 0.75rem;
-  }
-
-  .category-icon {
-    font-size: 2rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .category-grid {
-    grid-template-columns: 1fr;
+  .row-top :host ::ng-deep .category-card.p-card,
+  .row-bottom :host ::ng-deep .category-card.p-card {
+    width: 100%;
+    max-width: 320px;
   }
 }

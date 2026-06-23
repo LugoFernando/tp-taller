@@ -38,4 +38,18 @@ export class UsuarioRepository {
             data
         });
     }
+
+    async findAllUsuarios() {
+        return await prisma.usuario.findMany({
+            select: {
+                id: true,
+                email: true,
+                nombre: true,
+                apellido: true,
+                direccion: true,
+                rol: true
+            },
+            orderBy: { id: 'asc' }
+        });
+    }
 }

@@ -1,0 +1,47 @@
+<section class="page-container admin-page">
+  <div class="admin-top">
+    <p-button icon="pi pi-arrow-left" [text]="true" routerLink="/admin/productos" ariaLabel="Volver" />
+    <h1>{{ esEdicion ? 'Editar producto' : 'Nuevo producto' }}</h1>
+  </div>
+
+  <p-card styleClass="admin-form-card">
+    <form [formGroup]="form" (ngSubmit)="guardar()">
+      <div class="field">
+        <label>Nombre</label>
+        <input pInputText type="text" formControlName="nombre" />
+      </div>
+
+      <div class="field">
+        <label>Descripcion</label>
+        <input pInputText type="text" formControlName="descripcion" />
+      </div>
+
+      <div class="field">
+        <label>Clasificacion</label>
+        <p-select
+          formControlName="clasificacion"
+          [options]="categorias"
+          placeholder="Selecciona una categoria"
+          styleClass="w-full"
+        />
+      </div>
+
+      <div class="field">
+        <label>Precio</label>
+        <input pInputText type="number" formControlName="precio" />
+      </div>
+
+      <div class="field">
+        <label>Imagen</label>
+        <input type="file" accept="image/*" (change)="onImagenSeleccionada($event)" />
+        @if (nombreImagen()) {
+          <small class="imagen-nombre">Se guardara como: {{ nombreImagen() }}</small>
+        }
+      </div>
+
+      <div class="btn-row">
+        <p-button type="submit" [label]="esEdicion ? 'Guardar cambios' : 'Crear producto'" [disabled]="form.invalid" />
+      </div>
+    </form>
+  </p-card>
+</section>

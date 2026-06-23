@@ -1,0 +1,79 @@
+<section class="page-container admin-page">
+  <div class="admin-top">
+    <p-button icon="pi pi-arrow-left" [text]="true" routerLink="/admin" ariaLabel="Volver" />
+    <h1>Productos</h1>
+    <p-button
+      label="Agregar producto"
+      styleClass="btn-rounded btn-accent"
+      routerLink="/admin/productos/nuevo"
+    />
+  </div>
+
+  @if (cargando()) {
+    <div class="center-state">
+      <p-progressSpinner strokeWidth="4" />
+    </div>
+  } @else {
+    <div class="table-wrap">
+      <p-table [value]="productos()" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template #header>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Clasificacion</th>
+            <th>Precio</th>
+            <th>Activo</th>
+            <th>Acciones</th>
+          </tr>
+        </ng-template>
+        <ng-template #body let-p>
+          <tr>
+            <td>{{ p.id }}</td>
+            <td>{{ p.nombre }}</td>
+            <td>{{ p.clasificacion }}</td>
+            <td>${{ p.precio }}</td>
+            <td>{{ p.activo ? 'Si' : 'No' }}</td>
+            <td>
+              <div class="acciones">
+                <p-button
+                  icon="pi pi-eye"
+                  [text]="true"
+                  ariaLabel="Ver detalle"
+                  [routerLink]="['/admin/productos/detalle', p.id]"
+                />
+                <p-button
+                  icon="pi pi-pencil"
+                  [text]="true"
+                  ariaLabel="Editar"
+                  [routerLink]="['/admin/productos/editar', p.id]"
+                />
+                @if (p.activo) {
+                  <p-button
+                    icon="pi pi-ban"
+                    [text]="true"
+                    ariaLabel="Desactivar"
+                    (onClick)="cambiarEstado(p)"
+                  />
+                } @else {
+                  <p-button
+                    icon="pi pi-check"
+                    [text]="true"
+                    ariaLabel="Activar"
+                    (onClick)="cambiarEstado(p)"
+                  />
+                }
+                <p-button
+                  icon="pi pi-trash"
+                  [text]="true"
+                  severity="danger"
+                  ariaLabel="Eliminar"
+                  (onClick)="eliminar(p)"
+                />
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  }
+</section>

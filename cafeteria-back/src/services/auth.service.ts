@@ -72,6 +72,10 @@ export class AuthService {
         return user;
     }
 
+    async listarUsuariosAdmin() {
+        return await this.usuarioRepository.findAllUsuarios();
+    }
+
     
     async recoverPassword(email: string) {
         const user = await this.usuarioRepository.findUsuarioByEmail(email);

@@ -81,6 +81,15 @@ export class AuthController {
         }
     }
 
+    public getUsuarios = async (_req: Request, res: Response) => {
+        try {
+            const usuarios = await authService.listarUsuariosAdmin();
+            return res.status(200).json(usuarios);
+        } catch (error) {
+            return res.status(500).json({ message: 'Error al obtener usuarios', error });
+        }
+    }
+
     public getUsuario = async (req: Request, res: Response) => {
         try {
             const id: number = Number(req.params.id);

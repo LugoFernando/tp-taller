@@ -1,0 +1,30 @@
+.admin-form-card {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.field label {
+  font-weight: 600;
+  color: var(--cafe-medio, #6b4c35);
+}
+
+.btn-row {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.imagen-nombre {
+  color: var(--cafe-medio, #6b4c35);
+  font-size: 0.85rem;
+}
+
+:host ::ng-deep .w-full {
+  width: 100%;
+}

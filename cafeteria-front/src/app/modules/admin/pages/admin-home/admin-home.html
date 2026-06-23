@@ -1,0 +1,32 @@
+<section class="page-container admin-page">
+  <div class="page-header">
+    <h1>Panel de Administracion</h1>
+    <p>Elegi una opcion para gestionar la cafeteria</p>
+  </div>
+
+  <div class="admin-options">
+    <p-card styleClass="admin-option-card" [routerLink]="['/admin/cuentas']">
+      <div class="option-content">
+        <i class="pi pi-users option-icon"></i>
+        <h3>Cuentas</h3>
+        <p>Ver todas las cuentas creadas</p>
+      </div>
+    </p-card>
+
+    <p-card styleClass="admin-option-card" [routerLink]="['/admin/pedidos']">
+      <div class="option-content">
+        <i class="pi pi-shopping-bag option-icon"></i>
+        <h3>Pedidos</h3>
+        <p>Ver todos los pedidos realizados</p>
+      </div>
+    </p-card>
+
+    <p-card styleClass="admin-option-card" [routerLink]="['/admin/productos']">
+      <div class="option-content">
+        <i class="pi pi-box option-icon"></i>
+        <h3>Productos</h3>
+        <p>Gestionar el catalogo de productos</p>
+      </div>
+    </p-card>
+  </div>
+</section>

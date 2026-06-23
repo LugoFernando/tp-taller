@@ -10,7 +10,7 @@
         <p-button label="PEDIDOS" [text]="true" routerLink="/pedidos" routerLinkActive="active" styleClass="nav-link-btn" />
         <p-button icon="pi pi-shopping-cart" [text]="true" routerLink="/carrito" routerLinkActive="active" styleClass="nav-link-btn" ariaLabel="Carrito" />
         @if (auth.esAdmin()) {
-          <p-button label="ADMIN" [text]="true" routerLink="/productos/list-productos" routerLinkActive="active" styleClass="nav-link-btn" />
+          <p-button label="ADMIN" [text]="true" routerLink="/admin" routerLinkActive="active" styleClass="nav-link-btn" />
         }
       }
     </nav>

@@ -19,18 +19,18 @@ async function main() {
             rol: "admin"
         },
         {
-            email: "juan@cafeteria.com",
+            email: "fernando@cafeteria.com",
             password: "Cliente123!",
-            nombre: "Juan",
-            apellido: "Perez",
+            nombre: "Fernando",
+            apellido: "Lugo",
             direccion: "Calle Falsa 123",
             rol: "cliente"
         },
         {
-            email: "maria@cafeteria.com",
+            email: "gaston@cafeteria.com",
             password: "Cliente123!",
-            nombre: "Maria",
-            apellido: "Garcia",
+            nombre: "Gaston",
+            apellido: "Escobar",
             direccion: "Av. Siempreviva 742",
             rol: "cliente"
         },
@@ -39,7 +39,7 @@ async function main() {
             password: "Cliente123!",
             nombre: "Pedro",
             apellido: "Lopez",
-            direccion: "Pasaje San Martin 45",
+            direccion: "Calle Wallaby 42",
             rol: "cliente"
         }
     ]

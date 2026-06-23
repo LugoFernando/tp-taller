@@ -1,0 +1,34 @@
+.admin-top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.admin-top h1 {
+  color: var(--cafe-oscuro, #3d2b1f);
+  font-size: 1.75rem;
+  flex: 1;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.acciones {
+  display: flex;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}
+
+:host ::ng-deep .btn-accent.p-button {
+  background: var(--cafe-medio, #6b4c35);
+  border-color: var(--cafe-medio, #6b4c35);
+}
+
+@media (max-width: 768px) {
+  .admin-top h1 {
+    font-size: 1.4rem;
+  }
+}

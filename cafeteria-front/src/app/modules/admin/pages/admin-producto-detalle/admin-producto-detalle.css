@@ -1,0 +1,36 @@
+.admin-detail-card {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.producto-img {
+  width: 100%;
+  max-height: 280px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.detalle-row {
+  margin-bottom: 0.75rem;
+  color: var(--cafe-oscuro, #3d2b1f);
+}
+
+.acciones-detalle {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.admin-top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.admin-top h1 {
+  color: var(--cafe-oscuro, #3d2b1f);
+  font-size: 1.75rem;
+}

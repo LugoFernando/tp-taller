@@ -1,0 +1,30 @@
+@if (producto(); as p) {
+  <section class="page-container admin-page">
+    <div class="admin-top">
+      <p-button icon="pi pi-arrow-left" [text]="true" routerLink="/admin/productos" ariaLabel="Volver" />
+      <h1>Detalle del producto</h1>
+    </div>
+
+    <p-card styleClass="admin-detail-card">
+      @if (p.imagen) {
+        <img [src]="p.imagen" [alt]="p.nombre" class="producto-img" />
+      }
+      <div class="detalle-row"><strong>ID:</strong> {{ p.id }}</div>
+      <div class="detalle-row"><strong>Nombre:</strong> {{ p.nombre }}</div>
+      <div class="detalle-row"><strong>Descripcion:</strong> {{ p.descripcion }}</div>
+      <div class="detalle-row"><strong>Clasificacion:</strong> {{ p.clasificacion }}</div>
+      <div class="detalle-row"><strong>Precio:</strong> ${{ p.precio }}</div>
+      <div class="detalle-row"><strong>Activo:</strong> {{ p.activo ? 'Si' : 'No' }}</div>
+
+      <div class="acciones-detalle">
+        <p-button icon="pi pi-pencil" [text]="true" ariaLabel="Editar" [routerLink]="['/admin/productos/editar', p.id]" />
+        @if (p.activo) {
+          <p-button icon="pi pi-ban" [text]="true" ariaLabel="Desactivar" (onClick)="cambiarEstado()" />
+        } @else {
+          <p-button icon="pi pi-check" [text]="true" ariaLabel="Activar" (onClick)="cambiarEstado()" />
+        }
+        <p-button icon="pi pi-trash" [text]="true" severity="danger" ariaLabel="Eliminar" (onClick)="eliminar()" />
+      </div>
+    </p-card>
+  </section>
+}
