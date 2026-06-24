@@ -3,6 +3,8 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { DecimalPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ProductosService } from '../../../../api/services/productos/productos.service';
+import { CarritoService } from '../../../../api/services/carrito/carrito.service';
+import { AuthService } from '../../../../api/services/auth/auth.service';
 import { Producto } from '../../interfaces/producto.interface';
 import { Button } from 'primeng/button';
 import { Card } from 'primeng/card';
@@ -18,6 +20,8 @@ import { InputNumber } from 'primeng/inputnumber';
 export class DetalleProductoComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private productosService = inject(ProductosService);
+  private carritoService = inject(CarritoService);
+  private authService = inject(AuthService);
   private router = inject(Router);
 
   producto = signal<Producto | undefined>(undefined);
@@ -32,7 +36,16 @@ export class DetalleProductoComponent implements OnInit {
   }
 
   agregarAlCarrito() {
-    // Carrito no implementado aun
+    const p = this.producto();
+    if (!p) return;
+
+    if (!this.authService.estaAutenticado()) {
+      this.router.navigate(['/auth/login']);
+      return;
+    }
+
+    this.carritoService.agregar(p, this.cantidad);
+    alert('Producto agregado al carrito correctamente');
   }
 
   categoriaClass(clasificacion: string): string {

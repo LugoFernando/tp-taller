@@ -32,6 +32,15 @@ export declare class UsuarioRepository {
         direccion: string;
         rol: string;
     }>;
+    updatePasswordById(id: number, password: string): Promise<{
+        nombre: string;
+        id: number;
+        email: string;
+        password: string;
+        apellido: string;
+        direccion: string;
+        rol: string;
+    }>;
     updateUser(id: number, data: {
         email: string;
         nombre: string;
@@ -46,5 +55,13 @@ export declare class UsuarioRepository {
         direccion: string;
         rol: string;
     }>;
+    findAllUsuarios(): Promise<{
+        nombre: string;
+        id: number;
+        email: string;
+        apellido: string;
+        direccion: string;
+        rol: string;
+    }[]>;
 }
 //# sourceMappingURL=usuario.repository.d.ts.map

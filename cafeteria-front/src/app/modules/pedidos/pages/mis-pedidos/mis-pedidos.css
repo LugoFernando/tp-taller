@@ -1,0 +1,59 @@
+.pedidos-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.pedido-link {
+  color: inherit;
+}
+
+:host ::ng-deep .pedido-card.p-card {
+  border: 1px solid var(--crema-oscuro);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.pedido-link:hover :host ::ng-deep .pedido-card.p-card,
+:host ::ng-deep .pedido-card.p-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(61, 43, 31, 0.12);
+}
+
+.pedido-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.pedido-row h3 {
+  color: var(--cafe-oscuro);
+  margin-bottom: 0.25rem;
+}
+
+.fecha,
+.items-count {
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+}
+
+.total {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--cafe-oscuro);
+}
+
+.empty-actions {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.center-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--texto-suave);
+}
+
+.center-state p {
+  margin-top: 1rem;
+}

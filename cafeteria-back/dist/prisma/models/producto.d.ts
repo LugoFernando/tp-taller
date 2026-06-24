@@ -188,6 +188,7 @@ export type productoWhereInput = {
     precio?: Prisma.FloatFilter<"producto"> | number;
     activo?: Prisma.BoolFilter<"producto"> | boolean;
     imagen?: Prisma.StringNullableFilter<"producto"> | string | null;
+    pedidoItems?: Prisma.Pedido_itemListRelationFilter;
 };
 export type productoOrderByWithRelationInput = {
     id?: Prisma.SortOrder;
@@ -197,6 +198,7 @@ export type productoOrderByWithRelationInput = {
     precio?: Prisma.SortOrder;
     activo?: Prisma.SortOrder;
     imagen?: Prisma.SortOrderInput | Prisma.SortOrder;
+    pedidoItems?: Prisma.pedido_itemOrderByRelationAggregateInput;
 };
 export type productoWhereUniqueInput = Prisma.AtLeast<{
     id?: number;
@@ -209,6 +211,7 @@ export type productoWhereUniqueInput = Prisma.AtLeast<{
     precio?: Prisma.FloatFilter<"producto"> | number;
     activo?: Prisma.BoolFilter<"producto"> | boolean;
     imagen?: Prisma.StringNullableFilter<"producto"> | string | null;
+    pedidoItems?: Prisma.Pedido_itemListRelationFilter;
 }, "id">;
 export type productoOrderByWithAggregationInput = {
     id?: Prisma.SortOrder;
@@ -243,6 +246,7 @@ export type productoCreateInput = {
     precio: number;
     activo?: boolean;
     imagen?: string | null;
+    pedidoItems?: Prisma.pedido_itemCreateNestedManyWithoutProductoInput;
 };
 export type productoUncheckedCreateInput = {
     id?: number;
@@ -252,6 +256,7 @@ export type productoUncheckedCreateInput = {
     precio: number;
     activo?: boolean;
     imagen?: string | null;
+    pedidoItems?: Prisma.pedido_itemUncheckedCreateNestedManyWithoutProductoInput;
 };
 export type productoUpdateInput = {
     nombre?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -260,6 +265,7 @@ export type productoUpdateInput = {
     precio?: Prisma.FloatFieldUpdateOperationsInput | number;
     activo?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     imagen?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    pedidoItems?: Prisma.pedido_itemUpdateManyWithoutProductoNestedInput;
 };
 export type productoUncheckedUpdateInput = {
     id?: Prisma.IntFieldUpdateOperationsInput | number;
@@ -269,6 +275,7 @@ export type productoUncheckedUpdateInput = {
     precio?: Prisma.FloatFieldUpdateOperationsInput | number;
     activo?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     imagen?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    pedidoItems?: Prisma.pedido_itemUncheckedUpdateManyWithoutProductoNestedInput;
 };
 export type productoCreateManyInput = {
     id?: number;
@@ -331,6 +338,10 @@ export type productoSumOrderByAggregateInput = {
     id?: Prisma.SortOrder;
     precio?: Prisma.SortOrder;
 };
+export type ProductoNullableScalarRelationFilter = {
+    is?: Prisma.productoWhereInput | null;
+    isNot?: Prisma.productoWhereInput | null;
+};
 export type StringFieldUpdateOperationsInput = {
     set?: string;
 };
@@ -354,6 +365,91 @@ export type IntFieldUpdateOperationsInput = {
     multiply?: number;
     divide?: number;
 };
+export type productoCreateNestedOneWithoutPedidoItemsInput = {
+    create?: Prisma.XOR<Prisma.productoCreateWithoutPedidoItemsInput, Prisma.productoUncheckedCreateWithoutPedidoItemsInput>;
+    connectOrCreate?: Prisma.productoCreateOrConnectWithoutPedidoItemsInput;
+    connect?: Prisma.productoWhereUniqueInput;
+};
+export type productoUpdateOneWithoutPedidoItemsNestedInput = {
+    create?: Prisma.XOR<Prisma.productoCreateWithoutPedidoItemsInput, Prisma.productoUncheckedCreateWithoutPedidoItemsInput>;
+    connectOrCreate?: Prisma.productoCreateOrConnectWithoutPedidoItemsInput;
+    upsert?: Prisma.productoUpsertWithoutPedidoItemsInput;
+    disconnect?: Prisma.productoWhereInput | boolean;
+    delete?: Prisma.productoWhereInput | boolean;
+    connect?: Prisma.productoWhereUniqueInput;
+    update?: Prisma.XOR<Prisma.XOR<Prisma.productoUpdateToOneWithWhereWithoutPedidoItemsInput, Prisma.productoUpdateWithoutPedidoItemsInput>, Prisma.productoUncheckedUpdateWithoutPedidoItemsInput>;
+};
+export type productoCreateWithoutPedidoItemsInput = {
+    nombre: string;
+    descripcion: string;
+    clasificacion: string;
+    precio: number;
+    activo?: boolean;
+    imagen?: string | null;
+};
+export type productoUncheckedCreateWithoutPedidoItemsInput = {
+    id?: number;
+    nombre: string;
+    descripcion: string;
+    clasificacion: string;
+    precio: number;
+    activo?: boolean;
+    imagen?: string | null;
+};
+export type productoCreateOrConnectWithoutPedidoItemsInput = {
+    where: Prisma.productoWhereUniqueInput;
+    create: Prisma.XOR<Prisma.productoCreateWithoutPedidoItemsInput, Prisma.productoUncheckedCreateWithoutPedidoItemsInput>;
+};
+export type productoUpsertWithoutPedidoItemsInput = {
+    update: Prisma.XOR<Prisma.productoUpdateWithoutPedidoItemsInput, Prisma.productoUncheckedUpdateWithoutPedidoItemsInput>;
+    create: Prisma.XOR<Prisma.productoCreateWithoutPedidoItemsInput, Prisma.productoUncheckedCreateWithoutPedidoItemsInput>;
+    where?: Prisma.productoWhereInput;
+};
+export type productoUpdateToOneWithWhereWithoutPedidoItemsInput = {
+    where?: Prisma.productoWhereInput;
+    data: Prisma.XOR<Prisma.productoUpdateWithoutPedidoItemsInput, Prisma.productoUncheckedUpdateWithoutPedidoItemsInput>;
+};
+export type productoUpdateWithoutPedidoItemsInput = {
+    nombre?: Prisma.StringFieldUpdateOperationsInput | string;
+    descripcion?: Prisma.StringFieldUpdateOperationsInput | string;
+    clasificacion?: Prisma.StringFieldUpdateOperationsInput | string;
+    precio?: Prisma.FloatFieldUpdateOperationsInput | number;
+    activo?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    imagen?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+};
+export type productoUncheckedUpdateWithoutPedidoItemsInput = {
+    id?: Prisma.IntFieldUpdateOperationsInput | number;
+    nombre?: Prisma.StringFieldUpdateOperationsInput | string;
+    descripcion?: Prisma.StringFieldUpdateOperationsInput | string;
+    clasificacion?: Prisma.StringFieldUpdateOperationsInput | string;
+    precio?: Prisma.FloatFieldUpdateOperationsInput | number;
+    activo?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    imagen?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+};
+/**
+ * Count Type ProductoCountOutputType
+ */
+export type ProductoCountOutputType = {
+    pedidoItems: number;
+};
+export type ProductoCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    pedidoItems?: boolean | ProductoCountOutputTypeCountPedidoItemsArgs;
+};
+/**
+ * ProductoCountOutputType without action
+ */
+export type ProductoCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductoCountOutputType
+     */
+    select?: Prisma.ProductoCountOutputTypeSelect<ExtArgs> | null;
+};
+/**
+ * ProductoCountOutputType without action
+ */
+export type ProductoCountOutputTypeCountPedidoItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    where?: Prisma.pedido_itemWhereInput;
+};
 export type productoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
     nombre?: boolean;
@@ -362,6 +458,8 @@ export type productoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
     precio?: boolean;
     activo?: boolean;
     imagen?: boolean;
+    pedidoItems?: boolean | Prisma.producto$pedidoItemsArgs<ExtArgs>;
+    _count?: boolean | Prisma.ProductoCountOutputTypeDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["producto"]>;
 export type productoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
@@ -391,9 +489,17 @@ export type productoSelectScalar = {
     imagen?: boolean;
 };
 export type productoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nombre" | "descripcion" | "clasificacion" | "precio" | "activo" | "imagen", ExtArgs["result"]["producto"]>;
+export type productoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    pedidoItems?: boolean | Prisma.producto$pedidoItemsArgs<ExtArgs>;
+    _count?: boolean | Prisma.ProductoCountOutputTypeDefaultArgs<ExtArgs>;
+};
+export type productoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {};
+export type productoIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {};
 export type $productoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     name: "producto";
-    objects: {};
+    objects: {
+        pedidoItems: Prisma.$pedido_itemPayload<ExtArgs>[];
+    };
     scalars: runtime.Types.Extensions.GetPayloadResult<{
         id: number;
         nombre: string;
@@ -731,6 +837,7 @@ export interface productoDelegate<ExtArgs extends runtime.Types.Extensions.Inter
  */
 export interface Prisma__productoClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise";
+    pedidoItems<T extends Prisma.producto$pedidoItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.producto$pedidoItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$pedido_itemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -777,6 +884,10 @@ export type productoFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Inte
      */
     omit?: Prisma.productoOmit<ExtArgs> | null;
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.productoInclude<ExtArgs> | null;
+    /**
      * Filter, which producto to fetch.
      */
     where: Prisma.productoWhereUniqueInput;
@@ -794,6 +905,10 @@ export type productoFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensio
      */
     omit?: Prisma.productoOmit<ExtArgs> | null;
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.productoInclude<ExtArgs> | null;
+    /**
      * Filter, which producto to fetch.
      */
     where: Prisma.productoWhereUniqueInput;
@@ -810,6 +925,10 @@ export type productoFindFirstArgs<ExtArgs extends runtime.Types.Extensions.Inter
      * Omit specific fields from the producto
      */
     omit?: Prisma.productoOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.productoInclude<ExtArgs> | null;
     /**
      * Filter, which producto to fetch.
      */
@@ -858,6 +977,10 @@ export type productoFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extension
      */
     omit?: Prisma.productoOmit<ExtArgs> | null;
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.productoInclude<ExtArgs> | null;
+    /**
      * Filter, which producto to fetch.
      */
     where?: Prisma.productoWhereInput;
@@ -904,6 +1027,10 @@ export type productoFindManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
      * Omit specific fields from the producto
      */
     omit?: Prisma.productoOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.productoInclude<ExtArgs> | null;
     /**
      * Filter, which productos to fetch.
      */
@@ -952,6 +1079,10 @@ export type productoCreateArgs<ExtArgs extends runtime.Types.Extensions.Internal
      */
     omit?: Prisma.productoOmit<ExtArgs> | null;
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.productoInclude<ExtArgs> | null;
+    /**
      * The data needed to create a producto.
      */
     data: Prisma.XOR<Prisma.productoCreateInput, Prisma.productoUncheckedCreateInput>;
@@ -996,6 +1127,10 @@ export type productoUpdateArgs<ExtArgs extends runtime.Types.Extensions.Internal
      * Omit specific fields from the producto
      */
     omit?: Prisma.productoOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.productoInclude<ExtArgs> | null;
     /**
      * The data needed to update a producto.
      */
@@ -1060,6 +1195,10 @@ export type productoUpsertArgs<ExtArgs extends runtime.Types.Extensions.Internal
      */
     omit?: Prisma.productoOmit<ExtArgs> | null;
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.productoInclude<ExtArgs> | null;
+    /**
      * The filter to search for the producto to update in case it exists.
      */
     where: Prisma.productoWhereUniqueInput;
@@ -1085,6 +1224,10 @@ export type productoDeleteArgs<ExtArgs extends runtime.Types.Extensions.Internal
      */
     omit?: Prisma.productoOmit<ExtArgs> | null;
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.productoInclude<ExtArgs> | null;
+    /**
      * Filter which producto to delete.
      */
     where: Prisma.productoWhereUniqueInput;
@@ -1103,6 +1246,29 @@ export type productoDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
     limit?: number;
 };
 /**
+ * producto.pedidoItems
+ */
+export type producto$pedidoItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the pedido_item
+     */
+    select?: Prisma.pedido_itemSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the pedido_item
+     */
+    omit?: Prisma.pedido_itemOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.pedido_itemInclude<ExtArgs> | null;
+    where?: Prisma.pedido_itemWhereInput;
+    orderBy?: Prisma.pedido_itemOrderByWithRelationInput | Prisma.pedido_itemOrderByWithRelationInput[];
+    cursor?: Prisma.pedido_itemWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: Prisma.Pedido_itemScalarFieldEnum | Prisma.Pedido_itemScalarFieldEnum[];
+};
+/**
  * producto without action
  */
 export type productoDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1114,5 +1280,9 @@ export type productoDefaultArgs<ExtArgs extends runtime.Types.Extensions.Interna
      * Omit specific fields from the producto
      */
     omit?: Prisma.productoOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.productoInclude<ExtArgs> | null;
 };
 //# sourceMappingURL=producto.d.ts.map

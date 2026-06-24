@@ -20,7 +20,7 @@ export class AuthController {
                 return res.status(409).json({ message: 'El email ya esta en uso' });
             }
             if (error.message === 'PASSWORD_INVALIDO') {
-                return res.status(400).json({ message: 'La contrasena debe tener minimo 8 caracteres, una mayuscula, un numero y un caracter especial' });
+                return res.status(400).json({ message: 'La contraseña debe tener minimo 8 caracteres, una mayuscula, un numero y un caracter especial' });
             }
             return res.status(500).json({ message: 'Error al registrar usuario', error });
         }
@@ -48,11 +48,20 @@ export class AuthController {
         }
         const { email, nombre, apellido, direccion } = req.body;
         try {
-            const ususarioActualizado = authService.editarPerfil(id, { email, nombre, apellido, direccion });
+            const ususarioActualizado = await authService.editarPerfil(id, { email, nombre, apellido, direccion });
             res.status(200).json(ususarioActualizado);
         }
         catch (error) {
             res.status(500).json({ message: "No se pudo actualizar el usuario", error });
+        }
+    };
+    getUsuarios = async (_req, res) => {
+        try {
+            const usuarios = await authService.listarUsuariosAdmin();
+            return res.status(200).json(usuarios);
+        }
+        catch (error) {
+            return res.status(500).json({ message: 'Error al obtener usuarios', error });
         }
     };
     getUsuario = async (req, res) => {
@@ -74,6 +83,44 @@ export class AuthController {
                 message: "No se pudo encontrar el usuario",
                 error
             });
+        }
+    };
+    recoverPassword = async (req, res) => {
+        try {
+            const { email } = req.body;
+            if (!email) {
+                return res.status(400).json({ message: 'Email es obligatorio' });
+            }
+            const result = await authService.recoverPassword(email);
+            return res.status(200).json({
+                message: 'Si el email existe, se ha enviado un enlace de recuperación.',
+                recovery: result
+            });
+        }
+        catch (error) {
+            return res.status(500).json({ message: 'Error al procesar la solicitud', error });
+        }
+    };
+    resetPassword = async (req, res) => {
+        try {
+            const { token, password, confirmPassword } = req.body;
+            if (!token || !password || !confirmPassword) {
+                return res.status(400).json({ message: 'Token y nueva contraseña son obligatorios' });
+            }
+            await authService.resetPassword(token, password, confirmPassword);
+            return res.status(200).json({ message: 'Contraseña reestablecida correctamente' });
+        }
+        catch (error) {
+            if (error.message === 'TOKEN_INVALIDO') {
+                return res.status(400).json({ message: 'Token inválido o expirado' });
+            }
+            if (error.message === 'PASSWORD_INVALIDO') {
+                return res.status(400).json({ message: 'La contraseña debe tener minimo 8 caracteres, una mayuscula, un numero y un caracter especial' });
+            }
+            if (error.message === 'PASSWORDS_NO_COINCIDEN') {
+                return res.status(400).json({ message: 'Las contraseñas no coinciden' });
+            }
+            return res.status(500).json({ message: 'Error al reestablecer contraseña', error });
         }
     };
 }

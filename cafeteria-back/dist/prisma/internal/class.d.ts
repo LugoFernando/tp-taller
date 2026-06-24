@@ -139,6 +139,28 @@ export interface PrismaClient<in LogOpts extends Prisma.LogLevel = never, in out
     get usuario(): Prisma.usuarioDelegate<ExtArgs, {
         omit: OmitOpts;
     }>;
+    /**
+     * `prisma.pedido`: Exposes CRUD operations for the **pedido** model.
+      * Example usage:
+      * ```ts
+      * // Fetch zero or more Pedidos
+      * const pedidos = await prisma.pedido.findMany()
+      * ```
+      */
+    get pedido(): Prisma.pedidoDelegate<ExtArgs, {
+        omit: OmitOpts;
+    }>;
+    /**
+     * `prisma.pedido_item`: Exposes CRUD operations for the **pedido_item** model.
+      * Example usage:
+      * ```ts
+      * // Fetch zero or more Pedido_items
+      * const pedido_items = await prisma.pedido_item.findMany()
+      * ```
+      */
+    get pedido_item(): Prisma.pedido_itemDelegate<ExtArgs, {
+        omit: OmitOpts;
+    }>;
 }
 export declare function getPrismaClientClass(): PrismaClientConstructor;
 //# sourceMappingURL=class.d.ts.map

@@ -41,6 +41,21 @@ export declare class AuthService {
         apellido: string;
         direccion: string;
         rol: string;
-    } | null>;
+    }>;
+    listarUsuariosAdmin(): Promise<{
+        nombre: string;
+        id: number;
+        email: string;
+        apellido: string;
+        direccion: string;
+        rol: string;
+    }[]>;
+    recoverPassword(email: string): Promise<{
+        token: string;
+        recoveryLink: string;
+    }>;
+    resetPassword(token: string, newPassword: string, confirmPassword: string): Promise<{
+        message: string;
+    }>;
 }
 //# sourceMappingURL=auth.service.d.ts.map

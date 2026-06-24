@@ -31,4 +31,14 @@ export type producto = Prisma.productoModel;
  *
  */
 export type usuario = Prisma.usuarioModel;
+/**
+ * Model pedido
+ *
+ */
+export type pedido = Prisma.pedidoModel;
+/**
+ * Model pedido_item
+ *
+ */
+export type pedido_item = Prisma.pedido_itemModel;
 //# sourceMappingURL=client.d.ts.map

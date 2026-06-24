@@ -1,8 +1,14 @@
 import {} from 'express';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { ProductoRepository } from '../repository/producto.repository.js';
 import { ProductoService } from '../services/producto.service.js';
 const productoRepository = new ProductoRepository();
 const productoService = new ProductoService(productoRepository);
+function slugNombre(nombre) {
+    return nombre.toLowerCase().replace(/[^a-z0-9]/g, '');
+}
 export class ProductoController {
     constructor() { }
     getProductos = async (req, res) => {
@@ -90,6 +96,25 @@ export class ProductoController {
                 message: error.message ?? "No se pudo actualizar el producto",
                 error
             });
+        }
+    };
+    subirImagen = async (req, res) => {
+        try {
+            const { nombre, archivo, extension } = req.body;
+            if (!nombre || !archivo) {
+                return res.status(400).json({ message: 'Nombre e imagen son obligatorios' });
+            }
+            const ext = String(extension || 'jpg').replace('.', '');
+            const fileName = `${slugNombre(nombre)}.${ext}`;
+            const dir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../cafeteria-front/public/images/productos');
+            if (!fs.existsSync(dir)) {
+                fs.mkdirSync(dir, { recursive: true });
+            }
+            fs.writeFileSync(path.join(dir, fileName), Buffer.from(archivo, 'base64'));
+            return res.status(200).json({ imagen: `/images/productos/${fileName}` });
+        }
+        catch (error) {
+            return res.status(500).json({ message: 'Error al guardar imagen', error });
         }
     };
     eliminarProducto = async (req, res) => {

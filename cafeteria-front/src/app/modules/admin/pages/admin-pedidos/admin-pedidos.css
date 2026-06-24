@@ -13,3 +13,9 @@
 .table-wrap {
   overflow-x: auto;
 }
+
+.center-state {
+  display: flex;
+  justify-content: center;
+  padding: 3rem 1rem;
+}

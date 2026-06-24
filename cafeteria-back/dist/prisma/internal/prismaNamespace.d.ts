@@ -233,6 +233,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export declare const ModelName: {
     readonly producto: "producto";
     readonly usuario: "usuario";
+    readonly pedido: "pedido";
+    readonly pedido_item: "pedido_item";
 };
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
 export interface TypeMapCb<GlobalOmitOptions = {}> extends runtime.Types.Utils.Fn<{
@@ -245,7 +247,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         omit: GlobalOmitOptions;
     };
     meta: {
-        modelProps: "producto" | "usuario";
+        modelProps: "producto" | "usuario" | "pedido" | "pedido_item";
         txIsolationLevel: TransactionIsolationLevel;
     };
     model: {
@@ -397,6 +399,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
                 };
             };
         };
+        pedido: {
+            payload: Prisma.$pedidoPayload<ExtArgs>;
+            fields: Prisma.pedidoFieldRefs;
+            operations: {
+                findUnique: {
+                    args: Prisma.pedidoFindUniqueArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$pedidoPayload> | null;
+                };
+                findUniqueOrThrow: {
+                    args: Prisma.pedidoFindUniqueOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$pedidoPayload>;
+                };
+                findFirst: {
+                    args: Prisma.pedidoFindFirstArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$pedidoPayload> | null;
+                };
+                findFirstOrThrow: {
+                    args: Prisma.pedidoFindFirstOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$pedidoPayload>;
+                };
+                findMany: {
+                    args: Prisma.pedidoFindManyArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$pedidoPayload>[];
+                };
+                create: {
+                    args: Prisma.pedidoCreateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$pedidoPayload>;
+                };
+                createMany: {
+                    args: Prisma.pedidoCreateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                createManyAndReturn: {
+                    args: Prisma.pedidoCreateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$pedidoPayload>[];
+                };
+                delete: {
+                    args: Prisma.pedidoDeleteArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$pedidoPayload>;
+                };
+                update: {
+                    args: Prisma.pedidoUpdateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$pedidoPayload>;
+                };
+                deleteMany: {
+                    args: Prisma.pedidoDeleteManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateMany: {
+                    args: Prisma.pedidoUpdateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateManyAndReturn: {
+                    args: Prisma.pedidoUpdateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$pedidoPayload>[];
+                };
+                upsert: {
+                    args: Prisma.pedidoUpsertArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$pedidoPayload>;
+                };
+                aggregate: {
+                    args: Prisma.PedidoAggregateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.AggregatePedido>;
+                };
+                groupBy: {
+                    args: Prisma.pedidoGroupByArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.PedidoGroupByOutputType>[];
+                };
+                count: {
+                    args: Prisma.pedidoCountArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.PedidoCountAggregateOutputType> | number;
+                };
+            };
+        };
+        pedido_item: {
+            payload: Prisma.$pedido_itemPayload<ExtArgs>;
+            fields: Prisma.pedido_itemFieldRefs;
+            operations: {
+                findUnique: {
+                    args: Prisma.pedido_itemFindUniqueArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$pedido_itemPayload> | null;
+                };
+                findUniqueOrThrow: {
+                    args: Prisma.pedido_itemFindUniqueOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$pedido_itemPayload>;
+                };
+                findFirst: {
+                    args: Prisma.pedido_itemFindFirstArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$pedido_itemPayload> | null;
+                };
+                findFirstOrThrow: {
+                    args: Prisma.pedido_itemFindFirstOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$pedido_itemPayload>;
+                };
+                findMany: {
+                    args: Prisma.pedido_itemFindManyArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$pedido_itemPayload>[];
+                };
+                create: {
+                    args: Prisma.pedido_itemCreateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$pedido_itemPayload>;
+                };
+                createMany: {
+                    args: Prisma.pedido_itemCreateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                createManyAndReturn: {
+                    args: Prisma.pedido_itemCreateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$pedido_itemPayload>[];
+                };
+                delete: {
+                    args: Prisma.pedido_itemDeleteArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$pedido_itemPayload>;
+                };
+                update: {
+                    args: Prisma.pedido_itemUpdateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$pedido_itemPayload>;
+                };
+                deleteMany: {
+                    args: Prisma.pedido_itemDeleteManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateMany: {
+                    args: Prisma.pedido_itemUpdateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateManyAndReturn: {
+                    args: Prisma.pedido_itemUpdateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$pedido_itemPayload>[];
+                };
+                upsert: {
+                    args: Prisma.pedido_itemUpsertArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$pedido_itemPayload>;
+                };
+                aggregate: {
+                    args: Prisma.Pedido_itemAggregateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.AggregatePedido_item>;
+                };
+                groupBy: {
+                    args: Prisma.pedido_itemGroupByArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.Pedido_itemGroupByOutputType>[];
+                };
+                count: {
+                    args: Prisma.pedido_itemCountArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.Pedido_itemCountAggregateOutputType> | number;
+                };
+            };
+        };
     };
 } & {
     other: {
@@ -451,6 +601,25 @@ export declare const UsuarioScalarFieldEnum: {
     readonly rol: "rol";
 };
 export type UsuarioScalarFieldEnum = (typeof UsuarioScalarFieldEnum)[keyof typeof UsuarioScalarFieldEnum];
+export declare const PedidoScalarFieldEnum: {
+    readonly id: "id";
+    readonly usuarioId: "usuarioId";
+    readonly total: "total";
+    readonly createdAt: "createdAt";
+};
+export type PedidoScalarFieldEnum = (typeof PedidoScalarFieldEnum)[keyof typeof PedidoScalarFieldEnum];
+export declare const Pedido_itemScalarFieldEnum: {
+    readonly id: "id";
+    readonly pedidoId: "pedidoId";
+    readonly productoId: "productoId";
+    readonly nombreSnapshot: "nombreSnapshot";
+    readonly descripcionSnapshot: "descripcionSnapshot";
+    readonly clasificacionSnapshot: "clasificacionSnapshot";
+    readonly precioSnapshot: "precioSnapshot";
+    readonly cantidad: "cantidad";
+    readonly imagenSnapshot: "imagenSnapshot";
+};
+export type Pedido_itemScalarFieldEnum = (typeof Pedido_itemScalarFieldEnum)[keyof typeof Pedido_itemScalarFieldEnum];
 export declare const SortOrder: {
     readonly asc: "asc";
     readonly desc: "desc";
@@ -497,6 +666,14 @@ export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMode
  * Reference to a field of type 'Boolean'
  */
 export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>;
+/**
+ * Reference to a field of type 'DateTime'
+ */
+export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>;
+/**
+ * Reference to a field of type 'DateTime[]'
+ */
+export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>;
 /**
  * Batch Payload for updateMany & deleteMany & createMany
  */
@@ -608,6 +785,8 @@ export type PrismaClientOptions = ({
 export type GlobalOmitConfig = {
     producto?: Prisma.productoOmit;
     usuario?: Prisma.usuarioOmit;
+    pedido?: Prisma.pedidoOmit;
+    pedido_item?: Prisma.pedido_itemOmit;
 };
 export type LogLevel = 'info' | 'query' | 'warn' | 'error';
 export type LogDefinition = {

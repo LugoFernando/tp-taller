@@ -28,6 +28,8 @@ export declare const AnyNull: import("@prisma/client-runtime-utils").AnyNullClas
 export declare const ModelName: {
     readonly producto: "producto";
     readonly usuario: "usuario";
+    readonly pedido: "pedido";
+    readonly pedido_item: "pedido_item";
 };
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
 export declare const TransactionIsolationLevel: {
@@ -57,6 +59,25 @@ export declare const UsuarioScalarFieldEnum: {
     readonly rol: "rol";
 };
 export type UsuarioScalarFieldEnum = (typeof UsuarioScalarFieldEnum)[keyof typeof UsuarioScalarFieldEnum];
+export declare const PedidoScalarFieldEnum: {
+    readonly id: "id";
+    readonly usuarioId: "usuarioId";
+    readonly total: "total";
+    readonly createdAt: "createdAt";
+};
+export type PedidoScalarFieldEnum = (typeof PedidoScalarFieldEnum)[keyof typeof PedidoScalarFieldEnum];
+export declare const Pedido_itemScalarFieldEnum: {
+    readonly id: "id";
+    readonly pedidoId: "pedidoId";
+    readonly productoId: "productoId";
+    readonly nombreSnapshot: "nombreSnapshot";
+    readonly descripcionSnapshot: "descripcionSnapshot";
+    readonly clasificacionSnapshot: "clasificacionSnapshot";
+    readonly precioSnapshot: "precioSnapshot";
+    readonly cantidad: "cantidad";
+    readonly imagenSnapshot: "imagenSnapshot";
+};
+export type Pedido_itemScalarFieldEnum = (typeof Pedido_itemScalarFieldEnum)[keyof typeof Pedido_itemScalarFieldEnum];
 export declare const SortOrder: {
     readonly asc: "asc";
     readonly desc: "desc";

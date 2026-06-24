@@ -69,7 +69,9 @@ export const JsonNull = runtime.JsonNull;
 export const AnyNull = runtime.AnyNull;
 export const ModelName = {
     producto: 'producto',
-    usuario: 'usuario'
+    usuario: 'usuario',
+    pedido: 'pedido',
+    pedido_item: 'pedido_item'
 };
 /**
  * Enums
@@ -97,6 +99,23 @@ export const UsuarioScalarFieldEnum = {
     apellido: 'apellido',
     direccion: 'direccion',
     rol: 'rol'
+};
+export const PedidoScalarFieldEnum = {
+    id: 'id',
+    usuarioId: 'usuarioId',
+    total: 'total',
+    createdAt: 'createdAt'
+};
+export const Pedido_itemScalarFieldEnum = {
+    id: 'id',
+    pedidoId: 'pedidoId',
+    productoId: 'productoId',
+    nombreSnapshot: 'nombreSnapshot',
+    descripcionSnapshot: 'descripcionSnapshot',
+    clasificacionSnapshot: 'clasificacionSnapshot',
+    precioSnapshot: 'precioSnapshot',
+    cantidad: 'cantidad',
+    imagenSnapshot: 'imagenSnapshot'
 };
 export const SortOrder = {
     asc: 'asc',

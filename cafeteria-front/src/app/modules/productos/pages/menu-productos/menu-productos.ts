@@ -1,8 +1,10 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { DecimalPipe } from '@angular/common';
 import { ProductosService } from '../../../../api/services/productos/productos.service';
+import { CarritoService } from '../../../../api/services/carrito/carrito.service';
+import { AuthService } from '../../../../api/services/auth/auth.service';
 import { Producto } from '../../interfaces/producto.interface';
 import { slugToCategoria } from '../../constants/categorias';
 import { Button } from 'primeng/button';
@@ -34,6 +36,9 @@ import { Message } from 'primeng/message';
 })
 export class MenuProductosComponent implements OnInit {
   private productosService = inject(ProductosService);
+  private carritoService = inject(CarritoService);
+  private authService = inject(AuthService);
+  private router = inject(Router);
   private route = inject(ActivatedRoute);
 
   productos = signal<Producto[]>([]);
@@ -74,8 +79,13 @@ export class MenuProductosComponent implements OnInit {
     this.cargar();
   }
 
-  agregarAlCarrito() {
-    // Carrito no implementado aun
+  agregarAlCarrito(p: Producto) {
+    if (!this.authService.estaAutenticado()) {
+      this.router.navigate(['/auth/login']);
+      return;
+    }
+    this.carritoService.agregar(p, 1);
+    alert('Producto agregado al carrito correctamente');
   }
 
   categoriaClass(clasificacion: string): string {

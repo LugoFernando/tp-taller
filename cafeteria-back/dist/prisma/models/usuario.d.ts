@@ -184,6 +184,7 @@ export type usuarioWhereInput = {
     apellido?: Prisma.StringFilter<"usuario"> | string;
     direccion?: Prisma.StringFilter<"usuario"> | string;
     rol?: Prisma.StringFilter<"usuario"> | string;
+    pedidos?: Prisma.PedidoListRelationFilter;
 };
 export type usuarioOrderByWithRelationInput = {
     id?: Prisma.SortOrder;
@@ -193,6 +194,7 @@ export type usuarioOrderByWithRelationInput = {
     apellido?: Prisma.SortOrder;
     direccion?: Prisma.SortOrder;
     rol?: Prisma.SortOrder;
+    pedidos?: Prisma.pedidoOrderByRelationAggregateInput;
 };
 export type usuarioWhereUniqueInput = Prisma.AtLeast<{
     id?: number;
@@ -205,6 +207,7 @@ export type usuarioWhereUniqueInput = Prisma.AtLeast<{
     apellido?: Prisma.StringFilter<"usuario"> | string;
     direccion?: Prisma.StringFilter<"usuario"> | string;
     rol?: Prisma.StringFilter<"usuario"> | string;
+    pedidos?: Prisma.PedidoListRelationFilter;
 }, "id" | "email">;
 export type usuarioOrderByWithAggregationInput = {
     id?: Prisma.SortOrder;
@@ -239,6 +242,7 @@ export type usuarioCreateInput = {
     apellido: string;
     direccion: string;
     rol?: string;
+    pedidos?: Prisma.pedidoCreateNestedManyWithoutUsuarioInput;
 };
 export type usuarioUncheckedCreateInput = {
     id?: number;
@@ -248,6 +252,7 @@ export type usuarioUncheckedCreateInput = {
     apellido: string;
     direccion: string;
     rol?: string;
+    pedidos?: Prisma.pedidoUncheckedCreateNestedManyWithoutUsuarioInput;
 };
 export type usuarioUpdateInput = {
     email?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -256,6 +261,7 @@ export type usuarioUpdateInput = {
     apellido?: Prisma.StringFieldUpdateOperationsInput | string;
     direccion?: Prisma.StringFieldUpdateOperationsInput | string;
     rol?: Prisma.StringFieldUpdateOperationsInput | string;
+    pedidos?: Prisma.pedidoUpdateManyWithoutUsuarioNestedInput;
 };
 export type usuarioUncheckedUpdateInput = {
     id?: Prisma.IntFieldUpdateOperationsInput | number;
@@ -265,6 +271,7 @@ export type usuarioUncheckedUpdateInput = {
     apellido?: Prisma.StringFieldUpdateOperationsInput | string;
     direccion?: Prisma.StringFieldUpdateOperationsInput | string;
     rol?: Prisma.StringFieldUpdateOperationsInput | string;
+    pedidos?: Prisma.pedidoUncheckedUpdateManyWithoutUsuarioNestedInput;
 };
 export type usuarioCreateManyInput = {
     id?: number;
@@ -325,6 +332,93 @@ export type usuarioMinOrderByAggregateInput = {
 export type usuarioSumOrderByAggregateInput = {
     id?: Prisma.SortOrder;
 };
+export type UsuarioScalarRelationFilter = {
+    is?: Prisma.usuarioWhereInput;
+    isNot?: Prisma.usuarioWhereInput;
+};
+export type usuarioCreateNestedOneWithoutPedidosInput = {
+    create?: Prisma.XOR<Prisma.usuarioCreateWithoutPedidosInput, Prisma.usuarioUncheckedCreateWithoutPedidosInput>;
+    connectOrCreate?: Prisma.usuarioCreateOrConnectWithoutPedidosInput;
+    connect?: Prisma.usuarioWhereUniqueInput;
+};
+export type usuarioUpdateOneRequiredWithoutPedidosNestedInput = {
+    create?: Prisma.XOR<Prisma.usuarioCreateWithoutPedidosInput, Prisma.usuarioUncheckedCreateWithoutPedidosInput>;
+    connectOrCreate?: Prisma.usuarioCreateOrConnectWithoutPedidosInput;
+    upsert?: Prisma.usuarioUpsertWithoutPedidosInput;
+    connect?: Prisma.usuarioWhereUniqueInput;
+    update?: Prisma.XOR<Prisma.XOR<Prisma.usuarioUpdateToOneWithWhereWithoutPedidosInput, Prisma.usuarioUpdateWithoutPedidosInput>, Prisma.usuarioUncheckedUpdateWithoutPedidosInput>;
+};
+export type usuarioCreateWithoutPedidosInput = {
+    email: string;
+    password: string;
+    nombre: string;
+    apellido: string;
+    direccion: string;
+    rol?: string;
+};
+export type usuarioUncheckedCreateWithoutPedidosInput = {
+    id?: number;
+    email: string;
+    password: string;
+    nombre: string;
+    apellido: string;
+    direccion: string;
+    rol?: string;
+};
+export type usuarioCreateOrConnectWithoutPedidosInput = {
+    where: Prisma.usuarioWhereUniqueInput;
+    create: Prisma.XOR<Prisma.usuarioCreateWithoutPedidosInput, Prisma.usuarioUncheckedCreateWithoutPedidosInput>;
+};
+export type usuarioUpsertWithoutPedidosInput = {
+    update: Prisma.XOR<Prisma.usuarioUpdateWithoutPedidosInput, Prisma.usuarioUncheckedUpdateWithoutPedidosInput>;
+    create: Prisma.XOR<Prisma.usuarioCreateWithoutPedidosInput, Prisma.usuarioUncheckedCreateWithoutPedidosInput>;
+    where?: Prisma.usuarioWhereInput;
+};
+export type usuarioUpdateToOneWithWhereWithoutPedidosInput = {
+    where?: Prisma.usuarioWhereInput;
+    data: Prisma.XOR<Prisma.usuarioUpdateWithoutPedidosInput, Prisma.usuarioUncheckedUpdateWithoutPedidosInput>;
+};
+export type usuarioUpdateWithoutPedidosInput = {
+    email?: Prisma.StringFieldUpdateOperationsInput | string;
+    password?: Prisma.StringFieldUpdateOperationsInput | string;
+    nombre?: Prisma.StringFieldUpdateOperationsInput | string;
+    apellido?: Prisma.StringFieldUpdateOperationsInput | string;
+    direccion?: Prisma.StringFieldUpdateOperationsInput | string;
+    rol?: Prisma.StringFieldUpdateOperationsInput | string;
+};
+export type usuarioUncheckedUpdateWithoutPedidosInput = {
+    id?: Prisma.IntFieldUpdateOperationsInput | number;
+    email?: Prisma.StringFieldUpdateOperationsInput | string;
+    password?: Prisma.StringFieldUpdateOperationsInput | string;
+    nombre?: Prisma.StringFieldUpdateOperationsInput | string;
+    apellido?: Prisma.StringFieldUpdateOperationsInput | string;
+    direccion?: Prisma.StringFieldUpdateOperationsInput | string;
+    rol?: Prisma.StringFieldUpdateOperationsInput | string;
+};
+/**
+ * Count Type UsuarioCountOutputType
+ */
+export type UsuarioCountOutputType = {
+    pedidos: number;
+};
+export type UsuarioCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    pedidos?: boolean | UsuarioCountOutputTypeCountPedidosArgs;
+};
+/**
+ * UsuarioCountOutputType without action
+ */
+export type UsuarioCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UsuarioCountOutputType
+     */
+    select?: Prisma.UsuarioCountOutputTypeSelect<ExtArgs> | null;
+};
+/**
+ * UsuarioCountOutputType without action
+ */
+export type UsuarioCountOutputTypeCountPedidosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    where?: Prisma.pedidoWhereInput;
+};
 export type usuarioSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
     email?: boolean;
@@ -333,6 +427,8 @@ export type usuarioSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     apellido?: boolean;
     direccion?: boolean;
     rol?: boolean;
+    pedidos?: boolean | Prisma.usuario$pedidosArgs<ExtArgs>;
+    _count?: boolean | Prisma.UsuarioCountOutputTypeDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["usuario"]>;
 export type usuarioSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
@@ -362,9 +458,17 @@ export type usuarioSelectScalar = {
     rol?: boolean;
 };
 export type usuarioOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "password" | "nombre" | "apellido" | "direccion" | "rol", ExtArgs["result"]["usuario"]>;
+export type usuarioInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    pedidos?: boolean | Prisma.usuario$pedidosArgs<ExtArgs>;
+    _count?: boolean | Prisma.UsuarioCountOutputTypeDefaultArgs<ExtArgs>;
+};
+export type usuarioIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {};
+export type usuarioIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {};
 export type $usuarioPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     name: "usuario";
-    objects: {};
+    objects: {
+        pedidos: Prisma.$pedidoPayload<ExtArgs>[];
+    };
     scalars: runtime.Types.Extensions.GetPayloadResult<{
         id: number;
         email: string;
@@ -702,6 +806,7 @@ export interface usuarioDelegate<ExtArgs extends runtime.Types.Extensions.Intern
  */
 export interface Prisma__usuarioClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise";
+    pedidos<T extends Prisma.usuario$pedidosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.usuario$pedidosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$pedidoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -748,6 +853,10 @@ export type usuarioFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Inter
      */
     omit?: Prisma.usuarioOmit<ExtArgs> | null;
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.usuarioInclude<ExtArgs> | null;
+    /**
      * Filter, which usuario to fetch.
      */
     where: Prisma.usuarioWhereUniqueInput;
@@ -765,6 +874,10 @@ export type usuarioFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extension
      */
     omit?: Prisma.usuarioOmit<ExtArgs> | null;
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.usuarioInclude<ExtArgs> | null;
+    /**
      * Filter, which usuario to fetch.
      */
     where: Prisma.usuarioWhereUniqueInput;
@@ -781,6 +894,10 @@ export type usuarioFindFirstArgs<ExtArgs extends runtime.Types.Extensions.Intern
      * Omit specific fields from the usuario
      */
     omit?: Prisma.usuarioOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.usuarioInclude<ExtArgs> | null;
     /**
      * Filter, which usuario to fetch.
      */
@@ -829,6 +946,10 @@ export type usuarioFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions
      */
     omit?: Prisma.usuarioOmit<ExtArgs> | null;
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.usuarioInclude<ExtArgs> | null;
+    /**
      * Filter, which usuario to fetch.
      */
     where?: Prisma.usuarioWhereInput;
@@ -875,6 +996,10 @@ export type usuarioFindManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
      * Omit specific fields from the usuario
      */
     omit?: Prisma.usuarioOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.usuarioInclude<ExtArgs> | null;
     /**
      * Filter, which usuarios to fetch.
      */
@@ -923,6 +1048,10 @@ export type usuarioCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalA
      */
     omit?: Prisma.usuarioOmit<ExtArgs> | null;
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.usuarioInclude<ExtArgs> | null;
+    /**
      * The data needed to create a usuario.
      */
     data: Prisma.XOR<Prisma.usuarioCreateInput, Prisma.usuarioUncheckedCreateInput>;
@@ -967,6 +1096,10 @@ export type usuarioUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalA
      * Omit specific fields from the usuario
      */
     omit?: Prisma.usuarioOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.usuarioInclude<ExtArgs> | null;
     /**
      * The data needed to update a usuario.
      */
@@ -1031,6 +1164,10 @@ export type usuarioUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalA
      */
     omit?: Prisma.usuarioOmit<ExtArgs> | null;
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.usuarioInclude<ExtArgs> | null;
+    /**
      * The filter to search for the usuario to update in case it exists.
      */
     where: Prisma.usuarioWhereUniqueInput;
@@ -1056,6 +1193,10 @@ export type usuarioDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalA
      */
     omit?: Prisma.usuarioOmit<ExtArgs> | null;
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.usuarioInclude<ExtArgs> | null;
+    /**
      * Filter which usuario to delete.
      */
     where: Prisma.usuarioWhereUniqueInput;
@@ -1074,6 +1215,29 @@ export type usuarioDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
     limit?: number;
 };
 /**
+ * usuario.pedidos
+ */
+export type usuario$pedidosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the pedido
+     */
+    select?: Prisma.pedidoSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the pedido
+     */
+    omit?: Prisma.pedidoOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.pedidoInclude<ExtArgs> | null;
+    where?: Prisma.pedidoWhereInput;
+    orderBy?: Prisma.pedidoOrderByWithRelationInput | Prisma.pedidoOrderByWithRelationInput[];
+    cursor?: Prisma.pedidoWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: Prisma.PedidoScalarFieldEnum | Prisma.PedidoScalarFieldEnum[];
+};
+/**
  * usuario without action
  */
 export type usuarioDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1085,5 +1249,9 @@ export type usuarioDefaultArgs<ExtArgs extends runtime.Types.Extensions.Internal
      * Omit specific fields from the usuario
      */
     omit?: Prisma.usuarioOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.usuarioInclude<ExtArgs> | null;
 };
 //# sourceMappingURL=usuario.d.ts.map

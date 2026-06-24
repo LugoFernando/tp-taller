@@ -1,0 +1,37 @@
+<section class="page-container">
+  <div class="page-header">
+    <h1>Mis pedidos</h1>
+    <p>Historial de pedidos generados</p>
+  </div>
+
+  @if (cargando()) {
+    <div class="center-state">
+      <p-progressSpinner strokeWidth="4" />
+      <p>Cargando pedidos...</p>
+    </div>
+  } @else if (pedidos().length === 0) {
+    <p-message severity="info" styleClass="w-full">
+      Todavia no generaste ningun pedido.
+    </p-message>
+    <div class="empty-actions">
+      <p-button label="Ir al menu" icon="pi pi-list" routerLink="/menu" styleClass="btn-rounded" />
+    </div>
+  } @else {
+    <div class="pedidos-list">
+      @for (pedido of pedidos(); track pedido.id) {
+        <a [routerLink]="['/pedidos', pedido.id]" class="pedido-link">
+          <p-card styleClass="pedido-card">
+            <div class="pedido-row">
+              <div>
+                <h3>Pedido #{{ pedido.id }}</h3>
+                <p class="fecha">{{ pedido.createdAt | date:'dd/MM/yyyy HH:mm' }}</p>
+                <p class="items-count">{{ cantidadItems(pedido) }} producto(s)</p>
+              </div>
+              <p class="total">${{ pedido.total | number:'1.0-0' }}</p>
+            </div>
+          </p-card>
+        </a>
+      }
+    </div>
+  }
+</section>

@@ -31,6 +31,18 @@ export const routes: Routes = [
       import('./modules/productos/productos.routes').then(p => p.productosRoutes)
   },
   {
+    path: 'carrito',
+    canActivate: [authGuard],
+    loadChildren: () =>
+      import('./modules/carrito/carrito.routes').then(m => m.carritoRoutes)
+  },
+  {
+    path: 'pedidos',
+    canActivate: [authGuard],
+    loadChildren: () =>
+      import('./modules/pedidos/pedidos.routes').then(m => m.pedidosRoutes)
+  },
+  {
     path: '**',
     redirectTo: ''
   }

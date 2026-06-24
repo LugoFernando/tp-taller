@@ -8,21 +8,46 @@ datasource db {
 }
 
 model producto {
-  id            Int     @id @default(autoincrement())
-  nombre        String  @db.VarChar(100)
-  descripcion   String  @db.VarChar(500)
-  clasificacion String  @db.VarChar(50)
+  id            Int           @id @default(autoincrement())
+  nombre        String        @db.VarChar(100)
+  descripcion   String        @db.VarChar(500)
+  clasificacion String        @db.VarChar(50)
   precio        Float
-  activo        Boolean @default(true)
-  imagen        String? @db.VarChar(500)
+  activo        Boolean       @default(true)
+  imagen        String?       @db.VarChar(500)
+  pedidoItems   pedido_item[]
 }
 
 model usuario {
-  id        Int    @id @default(autoincrement())
-  email     String @unique
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
   password  String
   nombre    String
   apellido  String
   direccion String
-  rol       String @default("cliente")
+  rol       String   @default("cliente")
+  pedidos   pedido[]
+}
+
+model pedido {
+  id        Int           @id @default(autoincrement())
+  usuarioId Int
+  total     Float
+  createdAt DateTime      @default(now())
+  usuario   usuario       @relation(fields: [usuarioId], references: [id])
+  items     pedido_item[]
+}
+
+model pedido_item {
+  id                    Int       @id @default(autoincrement())
+  pedidoId              Int
+  productoId            Int?
+  nombreSnapshot        String    @db.VarChar(100)
+  descripcionSnapshot   String?   @db.VarChar(500)
+  clasificacionSnapshot String?   @db.VarChar(50)
+  precioSnapshot        Float
+  cantidad              Int
+  imagenSnapshot        String?   @db.VarChar(500)
+  pedido                pedido    @relation(fields: [pedidoId], references: [id], onDelete: Cascade)
+  producto              producto? @relation(fields: [productoId], references: [id], onDelete: SetNull)
 }

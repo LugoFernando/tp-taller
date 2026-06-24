@@ -4,7 +4,11 @@
     <h1>Pedidos</h1>
   </div>
 
-  @if (pedidos().length === 0) {
+  @if (cargando()) {
+    <div class="center-state">
+      <p-progressSpinner strokeWidth="4" />
+    </div>
+  } @else if (pedidos().length === 0) {
     <p-message severity="info" styleClass="w-full">
       No hay pedidos registrados todavia
     </p-message>
@@ -23,8 +27,8 @@
         <ng-template #body let-p>
           <tr>
             <td>{{ p.id }}</td>
-            <td>{{ p.fecha }}</td>
-            <td>${{ p.total }}</td>
+            <td>{{ p.fecha | date:'dd/MM/yyyy HH:mm' }}</td>
+            <td>${{ p.total | number:'1.0-0' }}</td>
             <td>{{ p.usuarioNombre }}</td>
             <td>{{ p.usuarioEmail }}</td>
           </tr>

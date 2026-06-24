@@ -35,7 +35,7 @@
   overflow: hidden;
   box-shadow: 0 2px 12px rgba(61, 43, 31, 0.12);
   transition: transform 0.2s;
-  border: 1px solid var(--crema-oscuro, #e8ddd0);
+  border: 1px solid var(--crema-oscuro, #3d2b1f);
   text-align: center;
 }
 

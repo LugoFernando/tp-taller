@@ -1,0 +1,83 @@
+<section class="page-container">
+  <p-toast position="top-center" />
+
+  <div class="page-header">
+    <h1>Carrito</h1>
+    <p>Revisa tus productos antes de generar el pedido</p>
+  </div>
+
+  @if (carritoService.carrito().length === 0) {
+    <p-message severity="info" styleClass="w-full">
+      Tu carrito esta vacio. Explora el menu para agregar productos.
+    </p-message>
+    <div class="empty-actions">
+      <p-button label="Ir al menu" icon="pi pi-list" routerLink="/menu" styleClass="btn-rounded" />
+    </div>
+  } @else {
+    <div class="cart-list">
+      @for (item of carritoService.carrito(); track item.producto.id) {
+        <p-card styleClass="cart-item-card">
+          <div class="cart-item">
+            <a [routerLink]="['/menu/producto', item.producto.id]" class="cart-item-link">
+              <div class="cart-item-img">
+                @if (item.producto.imagen) {
+                  <img [src]="item.producto.imagen" [alt]="item.producto.nombre" />
+                } @else {
+                  <div [class]="categoriaClass(item.producto.clasificacion) + ' product-img-default'"></div>
+                }
+              </div>
+              <div class="cart-item-info">
+                <h3>{{ item.producto.nombre }}</h3>
+                <p class="subtotal">
+                  ${{ item.producto.precio | number:'1.0-0' }} c/u
+                </p>
+              </div>
+            </a>
+
+            <div class="cart-item-actions">
+              <div class="qty-controls">
+                <p-button
+                  icon="pi pi-minus"
+                  [rounded]="true"
+                  [outlined]="true"
+                  styleClass="btn-rounded"
+                  (onClick)="carritoService.disminuir(item.producto.id!)"
+                  ariaLabel="Disminuir cantidad"
+                />
+                <span class="qty">{{ item.cantidad }}</span>
+                <p-button
+                  icon="pi pi-plus"
+                  [rounded]="true"
+                  styleClass="btn-rounded"
+                  (onClick)="carritoService.aumentar(item.producto.id!)"
+                  ariaLabel="Aumentar cantidad"
+                />
+              </div>
+              <p class="line-total">
+                ${{ item.producto.precio * item.cantidad | number:'1.0-0' }}
+              </p>
+              <p-button
+                icon="pi pi-trash"
+                severity="danger"
+                [text]="true"
+                (onClick)="carritoService.eliminar(item.producto.id!)"
+                ariaLabel="Eliminar del carrito"
+              />
+            </div>
+          </div>
+        </p-card>
+      }
+    </div>
+
+    <div class="cart-summary">
+      <p class="total-label">Total: <strong>${{ carritoService.total() | number:'1.0-0' }}</strong></p>
+      <p-button
+        label="Generar pedido"
+        icon="pi pi-check"
+        styleClass="btn-rounded"
+        [loading]="generando"
+        (onClick)="generarPedido()"
+      />
+    </div>
+  }
+</section>

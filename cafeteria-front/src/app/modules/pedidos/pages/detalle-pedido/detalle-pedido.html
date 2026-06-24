@@ -1,0 +1,72 @@
+@if (cargando()) {
+  <section class="page-container center-state">
+    <p-progressSpinner strokeWidth="4" />
+    <p>Cargando pedido...</p>
+  </section>
+} @else if (pedido(); as p) {
+  <section class="page-container">
+    <p-button icon="pi pi-arrow-left" [text]="true" routerLink="/pedidos" ariaLabel="Volver a pedidos" />
+
+    <div class="page-header">
+      <h1>Pedido #{{ p.id }}</h1>
+      <p class="fecha">{{ p.createdAt | date:'dd/MM/yyyy HH:mm' }}</p>
+    </div>
+
+    <div class="items-list">
+      @for (item of p.items; track item.id) {
+        <p-card styleClass="item-card">
+          <div class="item-row">
+            @if (item.productoId) {
+              <a [routerLink]="['/menu/producto', item.productoId]" class="item-link">
+                <div class="item-img">
+                  @if (item.imagenSnapshot) {
+                    <img [src]="item.imagenSnapshot" [alt]="item.nombreSnapshot" />
+                  } @else {
+                    <div [class]="categoriaClass(item.clasificacionSnapshot) + ' product-img-default'"></div>
+                  }
+                </div>
+                <div class="item-info">
+                  <h3>{{ item.nombreSnapshot }}</h3>
+                  @if (item.clasificacionSnapshot) {
+                    <p-tag [value]="item.clasificacionSnapshot" styleClass="tag-categoria" />
+                  }
+                  <p class="desc">{{ item.descripcionSnapshot }}</p>
+                  <p class="qty-price">
+                    {{ item.cantidad }} x ${{ item.precioSnapshot | number:'1.0-0' }}
+                  </p>
+                </div>
+              </a>
+            } @else {
+              <div class="item-link item-unavailable">
+                <div class="item-img">
+                  @if (item.imagenSnapshot) {
+                    <img [src]="item.imagenSnapshot" [alt]="item.nombreSnapshot" />
+                  } @else {
+                    <div [class]="categoriaClass(item.clasificacionSnapshot) + ' product-img-default'"></div>
+                  }
+                </div>
+                <div class="item-info">
+                  <h3>{{ item.nombreSnapshot }}</h3>
+                  <p-tag value="Producto no disponible" severity="warn" />
+                  @if (item.clasificacionSnapshot) {
+                    <p-tag [value]="item.clasificacionSnapshot" styleClass="tag-categoria" />
+                  }
+                  <p class="desc">{{ item.descripcionSnapshot }}</p>
+                  <p class="qty-price">
+                    {{ item.cantidad }} x ${{ item.precioSnapshot | number:'1.0-0' }}
+                  </p>
+                </div>
+              </div>
+            }
+
+            <p class="subtotal">${{ item.precioSnapshot * item.cantidad | number:'1.0-0' }}</p>
+          </div>
+        </p-card>
+      }
+    </div>
+
+    <div class="pedido-total">
+      <strong>Total: ${{ p.total | number:'1.0-0' }}</strong>
+    </div>
+  </section>
+}
