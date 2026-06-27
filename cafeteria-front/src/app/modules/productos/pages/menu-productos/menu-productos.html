@@ -30,7 +30,7 @@
           <ng-template #header>
             <div class="product-img">
               @if (p.imagen) {
-                <img [src]="p.imagen" [alt]="p.nombre" class="product-photo" />
+                <img [src]="'http://localhost:3000' + p.imagen" [alt]="p.nombre" class="product-photo" />
               } @else {
                 <div [class]="categoriaClass(p.clasificacion) + ' product-img-default product-photo-fallback'"></div>
               }
