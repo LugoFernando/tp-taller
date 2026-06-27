@@ -143,7 +143,7 @@ export class ProductoController {
             const fileName = `${slugNombre(nombre)}.${ext}`;
             const dir = path.resolve(
                 path.dirname(fileURLToPath(import.meta.url)),
-                '../../../cafeteria-front/public/images/productos'
+                '../../public/images/productos'
             );
 
             if (!fs.existsSync(dir)) {
