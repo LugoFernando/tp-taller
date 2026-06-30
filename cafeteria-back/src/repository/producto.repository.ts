@@ -1,16 +1,13 @@
 import { prisma } from '../prisma.js';
 import type { Producto } from '../models/producto.model.js';
+import type { Prisma } from '../prisma/client.js';
 
 export class ProductoRepository {
 
-    async findAllProductos(filtros?: { nombre?: string; clasificacion?: string }) {
-        const { nombre, clasificacion } = filtros ?? {};
+    async findAllProductos(where : Prisma.productoWhereInput) {
+        
         return await prisma.producto.findMany({
-            where: {
-                activo: true,
-                ...(clasificacion ? { clasificacion } : {}),
-                ...(nombre ? { nombre: { contains: nombre, mode: 'insensitive' } } : {})
-            },
+           where,
             orderBy: { nombre: 'asc' }
         });
     }
@@ -43,14 +40,7 @@ export class ProductoRepository {
     async updateProducto(id: number, data: Partial<Producto>) {
         return await prisma.producto.update({
             where: { id },
-            data: {
-                ...(data.nombre !== undefined && { nombre: data.nombre }),
-                ...(data.descripcion !== undefined && { descripcion: data.descripcion }),
-                ...(data.clasificacion !== undefined && { clasificacion: data.clasificacion }),
-                ...(data.precio !== undefined && { precio: data.precio }),
-                ...(data.activo !== undefined && { activo: data.activo }),
-                ...(data.imagen !== undefined && { imagen: data.imagen })
-            }
+            data, 
         });
     }
 
