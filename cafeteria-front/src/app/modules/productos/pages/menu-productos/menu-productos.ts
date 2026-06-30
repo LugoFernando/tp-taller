@@ -15,6 +15,8 @@ import { Card } from 'primeng/card';
 import { Tag } from 'primeng/tag';
 import { ProgressSpinner } from 'primeng/progressspinner';
 import { Message } from 'primeng/message';
+import { Toast } from '../../../../shared/toast/toast';
+
 
 @Component({
   selector: 'app-menu-productos',
@@ -40,6 +42,7 @@ export class MenuProductosComponent implements OnInit {
   private authService = inject(AuthService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
+  private toast = inject(Toast);
 
   productos = signal<Producto[]>([]);
   busqueda = '';
@@ -85,7 +88,7 @@ export class MenuProductosComponent implements OnInit {
       return;
     }
     this.carritoService.agregar(p, 1);
-    alert('Producto agregado al carrito correctamente');
+    this.toast.mostrar(`${p.nombre} agregado al carrito correctamente`, 'success');
   }
 
   categoriaClass(clasificacion: string): string {

@@ -1,12 +1,21 @@
 import type { Producto } from "../models/producto.model.js";
+import type { Prisma } from "../prisma/client.js";
 import type { ProductoRepository } from "../repository/producto.repository.js";
+
 
 export class ProductoService {
 
     constructor(private productoRepository: ProductoRepository) { }
 
     async obtenerProductos(filtros?: { nombre?: string; clasificacion?: string }) {
-        return await this.productoRepository.findAllProductos(filtros);
+        const { nombre, clasificacion} = filtros ?? {};
+
+        const where : Prisma.productoWhereInput = {
+            activo: true,
+            ...(clasificacion ? {clasificacion} : {}),
+            ...(nombre ? {nombre: {contains: nombre,mode:'insensitive'}} : {})
+        }
+        return await this.productoRepository.findAllProductos(where);
     }
 
     async obtenerProductosAdmin() {
@@ -48,7 +57,15 @@ export class ProductoService {
 
     async updateProducto(id: number, data: Partial<Producto>) {
         await this.obtenerProducto(id);
-        return await this.productoRepository.updateProducto(id, data);
+        const dataForm: Partial<Producto> ={
+            ...(data.nombre !== undefined && { nombre: data.nombre }),
+            ...(data.descripcion !== undefined && { descripcion: data.descripcion }),
+            ...(data.clasificacion !== undefined && { clasificacion: data.clasificacion }),
+            ...(data.precio !== undefined && { precio: data.precio }),
+            ...(data.activo !== undefined && { activo: data.activo }),
+            ...(data.imagen !== undefined && { imagen: data.imagen })    
+        }
+        return await this.productoRepository.updateProducto(id, dataForm);
     }
 
     async deleteProducto(id: number) {

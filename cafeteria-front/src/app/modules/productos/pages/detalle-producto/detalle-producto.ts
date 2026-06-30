@@ -10,6 +10,7 @@ import { Button } from 'primeng/button';
 import { Card } from 'primeng/card';
 import { Tag } from 'primeng/tag';
 import { InputNumber } from 'primeng/inputnumber';
+import { Toast } from '../../../../shared/toast/toast';
 
 @Component({
   selector: 'app-detalle-producto',
@@ -23,6 +24,7 @@ export class DetalleProductoComponent implements OnInit {
   private carritoService = inject(CarritoService);
   private authService = inject(AuthService);
   private router = inject(Router);
+  private toast = inject(Toast);
 
   producto = signal<Producto | undefined>(undefined);
   cantidad = 1;
@@ -45,7 +47,7 @@ export class DetalleProductoComponent implements OnInit {
     }
 
     this.carritoService.agregar(p, this.cantidad);
-    alert('Producto agregado al carrito correctamente');
+    this.toast.mostrar(`${p.nombre} agregado al carrito correctamente`,'success');
   }
 
   categoriaClass(clasificacion: string): string {

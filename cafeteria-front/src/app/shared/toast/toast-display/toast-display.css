@@ -1,0 +1,23 @@
+.toast {
+  position: fixed;
+  top: 1em; 
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 24px;
+  border-radius: 8px;
+  color: white;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 9999;
+  animation: aparecer 0.3s ease-out;
+  display: flex;
+}
+
+.toast.success { background-color: #4caf50; }
+.toast.error { background-color: #f44336; }
+.toast.info { background-color: #2196f3; }
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translate(-50%, 10px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}

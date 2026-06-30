@@ -1,0 +1,5 @@
+@if (toast.toastActual()) {
+  <div class="toast" [class]="toast.toastActual()?.tipo">
+    {{ toast.toastActual()?.mensaje }}
+  </div>
+}
